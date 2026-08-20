@@ -1,0 +1,236 @@
+{
+  "{{ messages.content }}": [
+    {
+      "items": [
+        {
+          "class": "text",
+          "name": "calc_title",
+          "label": "Заголовок",
+          "value": null,
+          "type": "text",
+          "general": true,
+          "general_position": 1
+        },
+        {
+          "class": "textarea",
+          "name": "calc_subtitle",
+          "label": "Подзаголовок",
+          "value": null,
+          "type": "textarea",
+          "general": true,
+          "general_position": 2
+        },
+        {
+          "class": "text",
+          "name": "calc_catalog_url",
+          "label": "Ссылка на каталог",
+          "value": null,
+          "type": "text",
+          "general": true,
+          "general_position": 3
+        },
+        {
+          "class": "text",
+          "name": "calc_catalog_text",
+          "label": "Текст кнопки каталога",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "text",
+          "name": "calc_company",
+          "label": "Название в шапке отчёта",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "textarea",
+          "name": "calc_note",
+          "label": "Примечание под расчётом",
+          "value": null,
+          "type": "textarea"
+        },
+        {
+          "class": "textarea",
+          "name": "calc_prices",
+          "label": "Цены материалов",
+          "value": null,
+          "type": "textarea",
+          "help": "По строке на позицию: ключ=цена. Цена за упаковку, если в расчёте показаны упаковки. Пусто — стоимость не считается."
+        },
+        {
+          "class": "text",
+          "name": "msg_whatsapp",
+          "label": "WhatsApp для сметы",
+          "value": null,
+          "type": "text",
+          "help": "Номер в формате 79067677788. Пусто — кнопка не показывается."
+        },
+        {
+          "class": "text",
+          "name": "msg_telegram",
+          "label": "Telegram для сметы",
+          "value": null,
+          "type": "text",
+          "help": "Имя пользователя без собачки. Пусто — кнопка не показывается."
+        }
+      ]
+    }
+  ],
+  "design": [
+    {
+      "type": "group",
+      "name": "{{ messages.stylization }}",
+      "items": [
+        {
+          "name": "wiz-bg",
+          "label": "Заливка карточки калькулятора",
+          "value": "",
+          "type": "color",
+          "clearable": true
+        },
+        {
+          "name": "bg",
+          "label": "{{ messages.widget_background_color }}",
+          "value": "",
+          "type": "color",
+          "clearable": true
+        },
+        {
+          "class": "checkbox",
+          "name": "layout-wide-bg",
+          "label": "{{ messages.wide_background }}",
+          "value": null,
+          "type": "checkbox"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "{{ messages.indentation }}",
+      "items": [
+        {
+          "class": "range",
+          "name": "layout-pt",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "label": "{{ messages.padding_top }} (rem)",
+          "type": "number",
+          "with_btns": true,
+          "help": "{{ messages.rem_helper }}",
+          "unit": "rem"
+        },
+        {
+          "class": "range",
+          "name": "layout-pb",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "label": "{{ messages.padding_bottom }} (rem)",
+          "type": "number",
+          "with_btns": true,
+          "help": "{{ messages.rem_helper }}",
+          "unit": "rem"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "{{ messages.content_settings }}",
+      "items": [
+        {
+          "class": "number",
+          "name": "layout-content-max-width",
+          "min": 980,
+          "max": 2000,
+          "label": "{{ messages.content_max_width }} (px)",
+          "type": "number",
+          "help": "{{ messages.px_helper }}",
+          "unit": "px",
+          "hide_mobile": true
+        },
+        {
+          "class": "checkbox",
+          "name": "layout-wide-content",
+          "label": "{{ messages.wide_content }}",
+          "value": null,
+          "type": "checkbox",
+          "hide_mobile": true
+        },
+        {
+          "class": "checkbox",
+          "name": "layout-edge",
+          "label": "{{ messages.remove_padding_at_edges }}",
+          "value": null,
+          "type": "checkbox"
+        }
+      ]
+    }
+  ],
+  "Видео": [
+    {
+      "type": "group",
+      "name": "Ссылки на видео",
+      "items": [
+        {
+          "class": "text",
+          "name": "video_title",
+          "label": "Заголовок блока",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "textarea",
+          "name": "video_plaster",
+          "label": "Штукатурка",
+          "value": null,
+          "type": "textarea",
+          "help": "До трёх роликов, по одному в строке. Формат: Название | ссылка | обложка. Обложка необязательна — у YouTube подтянется сама, для RuTube и VK укажите ссылку на картинку. Незаполненные места займут текстовые советы."
+        },
+        {
+          "class": "textarea",
+          "name": "video_putty",
+          "label": "Шпаклёвка",
+          "value": null,
+          "type": "textarea"
+        },
+        {
+          "class": "textarea",
+          "name": "video_tile",
+          "label": "Плитка",
+          "value": null,
+          "type": "textarea"
+        },
+        {
+          "class": "textarea",
+          "name": "video_drywall",
+          "label": "Гипсокартон",
+          "value": null,
+          "type": "textarea"
+        },
+        {
+          "class": "textarea",
+          "name": "video_floor",
+          "label": "Пол",
+          "value": null,
+          "type": "textarea"
+        },
+        {
+          "class": "textarea",
+          "name": "video_insulation",
+          "label": "Утепление",
+          "value": null,
+          "type": "textarea"
+        },
+        {
+          "class": "textarea",
+          "name": "video_masonry",
+          "label": "Кладка",
+          "value": null,
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

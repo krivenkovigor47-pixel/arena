@@ -1,0 +1,40 @@
+{
+  "calc_title": {
+    "ru": "Калькулятор материалов"
+  },
+  "calc_subtitle": {
+    "ru": "Три шага — и вы знаете, сколько мешков, литров и штук везти на объект."
+  },
+  "calc_catalog_url": "/collection/all",
+  "calc_catalog_text": {
+    "ru": "Перейти в каталог"
+  },
+  "calc_company": {
+    "ru": "Лама Строй"
+  },
+  "calc_note": {
+    "ru": "Расчёт ориентировочный, по усреднённым нормам расхода. Точный расход указан на упаковке конкретного товара и зависит от основания и способа нанесения. Закладывайте запас."
+  },
+  "calc_prices": {
+    "ru": "plaster_gypsum=\nputty=\nprimer=\npaint=\ntile_glue=\ngrout=\nscreed=\nself_level=\nblock_glue="
+  },
+  "bg": null,
+  "layout-wide-bg": true,
+  "layout-pt": 2,
+  "layout-pb": 2,
+  "layout-wide-content": false,
+  "layout-edge": false,
+  "wiz-bg": "#FFFFFF",
+  "msg_whatsapp": "79067677788",
+  "msg_telegram": "",
+  "video_title": {
+    "ru": "Советы от специалистов"
+  },
+  "video_plaster": "",
+  "video_putty": "",
+  "video_tile": "",
+  "video_drywall": "",
+  "video_floor": "",
+  "video_insulation": "",
+  "video_masonry": ""
+}
