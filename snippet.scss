@@ -301,60 +301,49 @@
     font: inherit;
     text-align: left;
     cursor: pointer;
-    padding: 0;
-    overflow: hidden;
+    padding: 1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     transition: box-shadow .18s ease, transform .18s ease;
 
     @media (hover: hover) {
       &:hover {
         transform: translateY(-2px);
-        box-shadow: inset 0 0 0 1px var(--acc), 0 8px 20px -12px rgba(0, 0, 0, .3);
+        box-shadow: inset 0 0 0 1px var(--color-text), 0 8px 20px -12px rgba(0, 0, 0, .3);
       }
 
-      &:hover .wiz__tip-play {
-        transform: translate(-50%, -50%) scale(1.08);
+      &:hover .wiz__tip-more {
+        text-decoration: underline;
       }
     }
   }
 
-  &__tip-shot {
-    position: relative;
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #1c1c1c;
-    margin-bottom: .85rem;
-    overflow: hidden;
-
-    &.is-plain {
-      background: var(--acc-dark);
-    }
-  }
-
-  &__tip-cover {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  &__tip-play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, .94);
-    color: var(--acc-dark);
-    display: flex;
+  &__tip-badge {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 14px -4px rgba(0, 0, 0, .5);
-    transition: transform .18s ease;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    background: color-mix(in srgb, var(--color-text) 8%, transparent);
+    border-radius: 999px;
+    padding: 0.25rem 0.6rem;
+    margin-bottom: 0.55rem;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__tip-more {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text);
   }
 
   &__modal {
@@ -528,14 +517,15 @@
   }
 }
 
-.wiz__tip_video .wiz__tip-name,
-.wiz__tip_video .wiz__tip-text {
+.wiz__tip_video .wiz__tip-name {
   display: block;
-  padding: 0 1.1rem;
+  color: var(--color-text);
+  margin-bottom: 0.3rem;
 }
 
 .wiz__tip_video .wiz__tip-text {
-  padding-bottom: 1rem;
+  display: block;
+  flex: 1 1 auto;
 }
 
 .goods {

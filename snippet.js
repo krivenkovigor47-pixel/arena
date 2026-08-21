@@ -523,26 +523,18 @@ $(function() {
 
       return raw.split(/[\r\n]+/).map(function (line) {
         var p = line.split("|").map(function (x) { return x.trim(); });
-        var name, url, cover;
+        var name, url;
 
         if (p.length === 1) {
           name = "Смотреть видео";
           url = p[0];
-          cover = "";
         } else {
           name = p[0];
           url = p[1];
-          cover = p[2] || "";
         }
 
-        if (!cover) cover = autoCover(url);
-        return url ? { name: name, url: url, cover: cover } : null;
+        return url ? { name: name, url: url } : null;
       }).filter(Boolean).slice(0, 3);
-    }
-
-    function autoCover(raw) {
-      var yt = String(raw).match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/|youtube\.com\/embed\/)([\w-]{6,})/);
-      return yt ? "https://i.ytimg.com/vi/" + yt[1] + "/hqdefault.jpg" : "";
     }
 
     function embedUrl(raw) {
@@ -585,44 +577,34 @@ $(function() {
       document.body.style.overflow = "hidden";
     }
 
+    function playIcon(size) {
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("width", String(size));
+      svg.setAttribute("height", String(size));
+      var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("fill", "currentColor");
+      path.setAttribute("d", "M8.6 5.4c0-.8.9-1.3 1.6-.9l8.2 5.7c.6.4.6 1.4 0 1.8l-8.2 5.7c-.7.5-1.6 0-1.6-.9V5.4z");
+      svg.appendChild(path);
+      return svg;
+    }
+
     function videoCard(v) {
       var card = el("button", "wiz__tip wiz__tip_video");
       card.setAttribute("type", "button");
       card.setAttribute("data-video-url", v.url);
       card.setAttribute("data-video-name", v.name);
 
-      var shot = el("span", "wiz__tip-shot");
+      var badge = el("span", "wiz__tip-badge");
+      badge.appendChild(playIcon(10));
+      badge.appendChild(document.createTextNode("Видео"));
 
-      if (v.cover) {
-        var img = document.createElement("img");
-        img.setAttribute("src", v.cover);
-        img.setAttribute("alt", "");
-        img.setAttribute("loading", "lazy");
-        img.className = "wiz__tip-cover";
-        img.addEventListener("error", function () {
-          shot.classList.add("is-plain");
-          if (img.parentNode) img.parentNode.removeChild(img);
-        });
-        shot.appendChild(img);
-      } else {
-        shot.classList.add("is-plain");
-      }
+      var more = el("span", "wiz__tip-more", "Смотреть \u2192");
 
-      var play = el("span", "wiz__tip-play");
-      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-      svg.setAttribute("viewBox", "0 0 24 24");
-      svg.setAttribute("width", "22");
-      svg.setAttribute("height", "22");
-      var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      path.setAttribute("fill", "currentColor");
-      path.setAttribute("d", "M8.6 5.4c0-.8.9-1.3 1.6-.9l8.2 5.7c.6.4.6 1.4 0 1.8l-8.2 5.7c-.7.5-1.6 0-1.6-.9V5.4z");
-      svg.appendChild(path);
-      play.appendChild(svg);
-      shot.appendChild(play);
-
-      card.appendChild(shot);
+      card.appendChild(badge);
       card.appendChild(el("span", "wiz__tip-name", v.name));
       card.appendChild(el("span", "wiz__tip-text", "Короткий ролик, как это делают на объекте"));
+      card.appendChild(more);
 
       return card;
     }
