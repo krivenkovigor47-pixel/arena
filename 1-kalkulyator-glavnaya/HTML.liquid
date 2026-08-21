@@ -1,0 +1,71 @@
+{% assign calc_url = widget_settings.teaser_url | default: '/page/stroitelnyy-kalkulyator' %}
+
+<div class="ct" data-ct data-url="{{ calc_url }}">
+
+  <div class="ct__calc">
+    <div class="ct__title">Строительный калькулятор</div>
+
+    <div class="ct__body">
+      <div class="ct__left">
+        <p class="ct__text">Посчитаем, сколько мешков, литров и штук нужно на объект.
+        Запас на подрезку и бой уже заложен в расчёт.</p>
+
+        <ul class="ct__chips">
+          <li>Стены</li>
+          <li>Плитка</li>
+          <li>Гипсокартон</li>
+          <li>Пол</li>
+          <li>Утепление</li>
+          <li>Кладка</li>
+        </ul>
+
+        <div class="ct__form">
+          <label class="ct-field">
+            <span class="ct-field__label">Что считаем</span>
+            <select class="ct-field__ctrl" data-t="mode">
+              <option value="plaster">Штукатурка</option>
+              <option value="putty">Шпаклёвка</option>
+              <option value="tile">Плитка и клей</option>
+              <option value="drywall">Гипсокартон</option>
+              <option value="floor">Стяжка пола</option>
+              <option value="insulation">Утепление</option>
+              <option value="masonry">Кладка</option>
+            </select>
+          </label>
+
+          <label class="ct-field">
+            <span class="ct-field__label">Площадь, м&sup2;</span>
+            <input type="number" class="ct-field__ctrl" data-t="area"
+                   min="0" max="5000" step="0.5" inputmode="decimal">
+          </label>
+        </div>
+      </div>
+
+      <div class="ct__out">
+        <div class="ct__out-title">Понадобится</div>
+        <div class="ct__rows" data-t-rows></div>
+        <a href="{{ calc_url }}" class="button button_size-l button_wide ct__btn" data-t-link>
+          {{ widget_settings.teaser_btn | default: 'Подробный расчёт' }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {% unless widget_settings.hide_promo %}
+  <div class="ct__promo">
+    <div class="ct__promo-ico">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M14 3v5h5M9 13h6M9 17h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="ct__promo-title">{{ widget_settings.promo_title }}</div>
+    <div class="ct__promo-text">{{ widget_settings.promo_text }}</div>
+    <a href="{{ widget_settings.promo_url | default: '/page/smeta' }}" class="ct__promo-btn">
+      {{ widget_settings.promo_btn | default: 'Отправить смету' }}
+      <span class="ct__promo-arrow">→</span>
+    </a>
+  </div>
+  {% endunless %}
+
+</div>

@@ -1,0 +1,232 @@
+{
+  "{{ messages.content }}": [
+    {
+      "items": [
+        {
+          "class": "text",
+          "name": "teaser_title",
+          "label": "Заголовок",
+          "value": null,
+          "type": "text",
+          "general": true,
+          "general_position": 1
+        },
+        {
+          "class": "textarea",
+          "name": "teaser_text",
+          "label": "Описание",
+          "value": null,
+          "type": "textarea",
+          "general": true,
+          "general_position": 2
+        },
+        {
+          "class": "checkbox",
+          "name": "hide-text",
+          "label": "Скрыть описание",
+          "value": null,
+          "type": "checkbox"
+        },
+        {
+          "class": "text",
+          "name": "teaser_url",
+          "label": "Ссылка на страницу калькулятора",
+          "value": null,
+          "type": "text",
+          "general": true,
+          "general_position": 3
+        },
+        {
+          "class": "text",
+          "name": "teaser_btn",
+          "label": "Текст кнопки",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "text",
+          "name": "promo_title",
+          "label": "Карточка: заголовок",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "textarea",
+          "name": "promo_text",
+          "label": "Карточка: описание",
+          "value": null,
+          "type": "textarea"
+        },
+        {
+          "class": "text",
+          "name": "promo_btn",
+          "label": "Карточка: текст кнопки",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "text",
+          "name": "promo_url",
+          "label": "Карточка: ссылка кнопки",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "checkbox",
+          "name": "hide_promo",
+          "label": "Скрыть карточку «Пришлите смету»",
+          "value": null,
+          "type": "checkbox"
+        }
+      ]
+    }
+  ],
+  "Оформление": [
+    {
+      "items": [
+        {
+          "class": "color",
+          "name": "teaser-accent",
+          "label": "Акцентный цвет",
+          "value": null,
+          "type": "color"
+        },
+        {
+          "class": "range",
+          "name": "teaser-radius",
+          "label": "Скругление углов",
+          "min": 0,
+          "max": 24,
+          "step": 2,
+          "type": "number",
+          "with_btns": true,
+          "unit": "px"
+        },
+        {
+          "class": "range",
+          "name": "teaser-form-width",
+          "label": "Ширина формы",
+          "min": 280,
+          "max": 480,
+          "step": 20,
+          "type": "number",
+          "with_btns": true,
+          "unit": "px"
+        },
+        {
+          "class": "checkbox",
+          "name": "teaser-stack",
+          "label": "Форма под текстом",
+          "value": null,
+          "type": "checkbox"
+        },
+        {
+          "class": "checkbox",
+          "name": "teaser-outline",
+          "label": "Форма рамкой, без заливки",
+          "value": null,
+          "type": "checkbox"
+        },
+        {
+          "class": "checkbox",
+          "name": "teaser-hide-result",
+          "label": "Не показывать быстрый расчёт",
+          "value": null,
+          "type": "checkbox",
+          "help": "Останется только выбор и кнопка перехода"
+        }
+      ]
+    }
+  ],
+  "design": [
+    {
+      "type": "group",
+      "name": "{{ messages.stylization }}",
+      "items": [
+        {
+          "name": "ct-bg",
+          "label": "Заливка карточки калькулятора",
+          "value": "",
+          "type": "color",
+          "clearable": true
+        },
+        {
+          "name": "bg",
+          "label": "{{ messages.widget_background_color }}",
+          "value": "",
+          "type": "color",
+          "clearable": true
+        },
+        {
+          "class": "checkbox",
+          "name": "layout-wide-bg",
+          "label": "{{ messages.wide_background }}",
+          "value": null,
+          "type": "checkbox"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "{{ messages.indentation }}",
+      "items": [
+        {
+          "class": "range",
+          "name": "layout-pt",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "label": "{{ messages.padding_top }} (rem)",
+          "type": "number",
+          "with_btns": true,
+          "help": "{{ messages.rem_helper }}",
+          "unit": "rem"
+        },
+        {
+          "class": "range",
+          "name": "layout-pb",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "label": "{{ messages.padding_bottom }} (rem)",
+          "type": "number",
+          "with_btns": true,
+          "help": "{{ messages.rem_helper }}",
+          "unit": "rem"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "{{ messages.content_settings }}",
+      "items": [
+        {
+          "class": "number",
+          "name": "layout-content-max-width",
+          "min": 980,
+          "max": 2000,
+          "label": "{{ messages.content_max_width }} (px)",
+          "type": "number",
+          "help": "{{ messages.px_helper }}",
+          "unit": "px",
+          "hide_mobile": true
+        },
+        {
+          "class": "checkbox",
+          "name": "layout-wide-content",
+          "label": "{{ messages.wide_content }}",
+          "value": null,
+          "type": "checkbox",
+          "hide_mobile": true
+        },
+        {
+          "class": "checkbox",
+          "name": "layout-edge",
+          "label": "{{ messages.remove_padding_at_edges }}",
+          "value": null,
+          "type": "checkbox"
+        }
+      ]
+    }
+  ]
+}
