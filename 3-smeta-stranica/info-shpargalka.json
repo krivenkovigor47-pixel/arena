@@ -1,0 +1,11 @@
+{
+  "type": "SimpleWidgetType",
+  "handle": "lama_smeta",
+  "page_kinds": ["all"],
+  "widget_list_kinds": ["content"],
+  "generation": 4,
+  "name": { "ru": "Смета" },
+  "description": { "ru": "Страница приёма сметы через мессенджеры" },
+  "widget_category_handle": "banner",
+  "libraries": ["jquery"]
+}
