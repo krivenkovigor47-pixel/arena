@@ -4,21 +4,12 @@
       "items": [
         {
           "class": "text",
-          "name": "brand_name",
-          "label": "Название компании",
-          "value": null,
-          "type": "text",
-          "general": true,
-          "general_position": 1
-        },
-        {
-          "class": "text",
           "name": "hero_title_first",
           "label": "Заголовок: первая строка",
           "value": null,
           "type": "text",
           "general": true,
-          "general_position": 2
+          "general_position": 1
         },
         {
           "class": "text",
@@ -27,14 +18,16 @@
           "value": null,
           "type": "text",
           "general": true,
-          "general_position": 3
+          "general_position": 2
         },
         {
           "class": "text",
           "name": "hero_title_accent",
           "label": "Заголовок: зелёное выделение",
           "value": null,
-          "type": "text"
+          "type": "text",
+          "general": true,
+          "general_position": 3
         },
         {
           "class": "textarea",
@@ -45,29 +38,57 @@
         },
         {
           "class": "text",
-          "name": "promo_title",
-          "label": "Карточка: заголовок",
+          "name": "estimate_title",
+          "label": "Карточка сметы: заголовок",
           "value": null,
           "type": "text"
         },
         {
           "class": "textarea",
-          "name": "promo_text",
-          "label": "Карточка: описание",
+          "name": "estimate_text",
+          "label": "Карточка сметы: описание",
           "value": null,
           "type": "textarea"
         },
         {
           "class": "text",
-          "name": "promo_btn",
-          "label": "Текст кнопки",
+          "name": "estimate_btn",
+          "label": "Карточка сметы: текст кнопки",
           "value": null,
           "type": "text"
         },
         {
           "class": "text",
-          "name": "promo_url",
-          "label": "Ссылка кнопки",
+          "name": "estimate_url",
+          "label": "Карточка сметы: ссылка кнопки",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "text",
+          "name": "calculator_title",
+          "label": "Карточка калькулятора: заголовок",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "textarea",
+          "name": "calculator_text",
+          "label": "Карточка калькулятора: описание",
+          "value": null,
+          "type": "textarea"
+        },
+        {
+          "class": "text",
+          "name": "calculator_btn",
+          "label": "Карточка калькулятора: текст кнопки",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "text",
+          "name": "calculator_url",
+          "label": "Карточка калькулятора: ссылка",
           "value": null,
           "type": "text"
         }

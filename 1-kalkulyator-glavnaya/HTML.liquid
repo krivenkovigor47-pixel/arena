@@ -1,20 +1,18 @@
-{% assign brand_name = widget_settings.brand_name | default: 'ЛАМА СТРОЙ' %}
 {% assign title_first = widget_settings.hero_title_first | default: 'Стройматериалы,' %}
 {% assign title_second = widget_settings.hero_title_second | default: 'которые' %}
 {% assign title_accent = widget_settings.hero_title_accent | default: 'не нужно искать' %}
-{% assign hero_text = widget_settings.hero_text | default: 'Черновые материалы в наличии, доставка на объект манипулятором. Пришлите список материалов — смета сразу в Excel или WhatsApp.' %}
-{% assign smeta_url = widget_settings.promo_url | default: '/page/smeta' %}
-{% assign smeta_title = widget_settings.promo_title | default: 'Скиньте смету — соберём заказ' %}
-{% assign smeta_text = widget_settings.promo_text | default: 'Фото сметы, список в блокноте, файл из проекта. Соберём корзину, подберём аналоги дешевле и посчитаем доставку.' %}
-{% assign smeta_btn = widget_settings.promo_btn | default: 'Отправить смету' %}
+{% assign hero_text = widget_settings.hero_text | default: 'Черновые материалы в наличии, доставка на объект манипулятором. Пришлите список материалов — подготовим смету в Excel или WhatsApp.' %}
+{% assign smeta_url = widget_settings.estimate_url | default: '/page/smeta' %}
+{% assign smeta_title = widget_settings.estimate_title | default: 'Скиньте смету — соберём заказ' %}
+{% assign smeta_text = widget_settings.estimate_text | default: 'Фото сметы, список в блокноте, файл из проекта. Соберём корзину, подберём аналоги дешевле и посчитаем доставку.' %}
+{% assign smeta_btn = widget_settings.estimate_btn | default: 'Отправить смету' %}
+{% assign calculator_url = widget_settings.calculator_url | default: '/page/stroitelnyy-kalkulyator' %}
+{% assign calculator_title = widget_settings.calculator_title | default: 'Строительный калькулятор' %}
+{% assign calculator_text = widget_settings.calculator_text | default: 'Три шага — и вы знаете, сколько мешков, литров и штук везти на объект.' %}
+{% assign calculator_btn = widget_settings.calculator_btn | default: 'Посчитать материалы' %}
 
 <div class="lama-showcase" data-lama-showcase>
   <div class="lama-showcase__copy">
-    <div class="lama-showcase__brand">
-      <span class="lama-showcase__brand-line" aria-hidden="true"></span>
-      <span>{{ brand_name | escape }}</span>
-    </div>
-
     <h1 class="lama-showcase__title">
       <span class="lama-showcase__title-line">{{ title_first | escape }}</span>
       <span class="lama-showcase__title-line">
@@ -25,7 +23,7 @@
     <p class="lama-showcase__text">{{ hero_text | escape }}</p>
   </div>
 
-  <aside class="lama-showcase__aside" aria-label="Заказ материалов по смете">
+  <aside class="lama-showcase__aside" aria-label="Смета и калькулятор материалов">
     <div class="lama-showcase__offer">
       <div class="lama-showcase__offer-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22" focusable="false">
@@ -40,6 +38,24 @@
       <a href="{{ smeta_url | escape }}" class="lama-showcase__offer-button">
         <span>{{ smeta_btn | escape }}</span>
         <span class="lama-showcase__offer-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="lama-showcase__calculator">
+      <div class="lama-showcase__calculator-head">
+        <span class="lama-showcase__calculator-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" focusable="false">
+            <rect x="5.5" y="3.5" width="13" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M9 7.5h6M9 11.5h.01M12 11.5h.01M15 11.5h.01M9 15.5h.01M12 15.5h.01M15 15.5h.01" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h2 class="lama-showcase__calculator-title">{{ calculator_title | escape }}</h2>
+      </div>
+
+      <p class="lama-showcase__calculator-text">{{ calculator_text | escape }}</p>
+
+      <a href="{{ calculator_url | escape }}" class="lama-showcase__calculator-button">
+        {{ calculator_btn | escape }}
       </a>
     </div>
   </aside>
