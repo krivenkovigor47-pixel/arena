@@ -2,6 +2,9 @@
 {% assign title_second = widget_settings.hero_title_second | default: 'которые' %}
 {% assign title_accent = widget_settings.hero_title_accent | default: 'не нужно искать' %}
 {% assign hero_text = widget_settings.hero_text | default: 'Черновые материалы в наличии, доставка на объект манипулятором. Пришлите список материалов — подготовим смету в Excel или WhatsApp.' %}
+{% assign benefit_one = widget_settings.benefit_one | default: 'Материалы в наличии' %}
+{% assign benefit_two = widget_settings.benefit_two | default: 'Доставка на объект' %}
+{% assign benefit_three = widget_settings.benefit_three | default: 'Подберём аналоги' %}
 {% assign smeta_url = widget_settings.estimate_url | default: '/page/smeta' %}
 {% assign smeta_title = widget_settings.estimate_title | default: 'Скиньте смету — соберём заказ' %}
 {% assign smeta_text = widget_settings.estimate_text | default: 'Фото сметы, список в блокноте, файл из проекта. Соберём корзину, подберём аналоги дешевле и посчитаем доставку.' %}
@@ -21,6 +24,21 @@
     </h1>
 
     <p class="lama-showcase__text">{{ hero_text | escape }}</p>
+
+    <ul class="lama-showcase__benefits" aria-label="Наши преимущества">
+      <li class="lama-showcase__benefit">
+        <span class="lama-showcase__benefit-icon" aria-hidden="true">✓</span>
+        <span>{{ benefit_one | escape }}</span>
+      </li>
+      <li class="lama-showcase__benefit">
+        <span class="lama-showcase__benefit-icon" aria-hidden="true">✓</span>
+        <span>{{ benefit_two | escape }}</span>
+      </li>
+      <li class="lama-showcase__benefit">
+        <span class="lama-showcase__benefit-icon" aria-hidden="true">✓</span>
+        <span>{{ benefit_three | escape }}</span>
+      </li>
+    </ul>
   </div>
 
   <aside class="lama-showcase__aside" aria-label="Смета и калькулятор материалов">
