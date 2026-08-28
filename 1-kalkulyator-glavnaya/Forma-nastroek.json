@@ -38,27 +38,6 @@
         },
         {
           "class": "text",
-          "name": "benefit_one",
-          "label": "Преимущество 1",
-          "value": null,
-          "type": "text"
-        },
-        {
-          "class": "text",
-          "name": "benefit_two",
-          "label": "Преимущество 2",
-          "value": null,
-          "type": "text"
-        },
-        {
-          "class": "text",
-          "name": "benefit_three",
-          "label": "Преимущество 3",
-          "value": null,
-          "type": "text"
-        },
-        {
-          "class": "text",
           "name": "estimate_title",
           "label": "Карточка сметы: заголовок",
           "value": null,
