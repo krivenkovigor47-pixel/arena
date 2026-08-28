@@ -33,8 +33,8 @@
   "calculator_url": "/page/stroitelnyy-kalkulyator",
   "bg": "#F4F5F3",
   "layout-wide-bg": true,
-  "layout-pt": 2,
-  "layout-pb": 2,
+  "layout-pt": 0.5,
+  "layout-pb": 0.5,
   "layout-wide-content": false,
   "layout-edge": false
 }
