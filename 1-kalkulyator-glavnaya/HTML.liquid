@@ -1,71 +1,46 @@
-{% assign calc_url = widget_settings.teaser_url | default: '/page/stroitelnyy-kalkulyator' %}
+{% assign brand_name = widget_settings.brand_name | default: 'ЛАМА СТРОЙ' %}
+{% assign title_first = widget_settings.hero_title_first | default: 'Стройматериалы,' %}
+{% assign title_second = widget_settings.hero_title_second | default: 'которые' %}
+{% assign title_accent = widget_settings.hero_title_accent | default: 'не нужно искать' %}
+{% assign hero_text = widget_settings.hero_text | default: 'Черновые материалы в наличии, доставка на объект манипулятором. Пришлите список материалов — смета сразу в Excel или WhatsApp.' %}
+{% assign smeta_url = widget_settings.promo_url | default: '/page/smeta' %}
+{% assign smeta_title = widget_settings.promo_title | default: 'Скиньте смету — соберём заказ' %}
+{% assign smeta_text = widget_settings.promo_text | default: 'Фото сметы, список в блокноте, файл из проекта. Соберём корзину, подберём аналоги дешевле и посчитаем доставку.' %}
+{% assign smeta_btn = widget_settings.promo_btn | default: 'Отправить смету' %}
 
-<div class="ct" data-ct data-url="{{ calc_url }}">
-
-  <div class="ct__calc">
-    <div class="ct__title">Строительный калькулятор</div>
-
-    <div class="ct__body">
-      <div class="ct__left">
-        <p class="ct__text">Посчитаем, сколько мешков, литров и штук нужно на объект.
-        Запас на подрезку и бой уже заложен в расчёт.</p>
-
-        <ul class="ct__chips">
-          <li>Стены</li>
-          <li>Плитка</li>
-          <li>Гипсокартон</li>
-          <li>Пол</li>
-          <li>Утепление</li>
-          <li>Кладка</li>
-        </ul>
-
-        <div class="ct__form">
-          <label class="ct-field">
-            <span class="ct-field__label">Что считаем</span>
-            <select class="ct-field__ctrl" data-t="mode">
-              <option value="plaster">Штукатурка</option>
-              <option value="putty">Шпаклёвка</option>
-              <option value="tile">Плитка и клей</option>
-              <option value="drywall">Гипсокартон</option>
-              <option value="floor">Стяжка пола</option>
-              <option value="insulation">Утепление</option>
-              <option value="masonry">Кладка</option>
-            </select>
-          </label>
-
-          <label class="ct-field">
-            <span class="ct-field__label">Площадь, м&sup2;</span>
-            <input type="number" class="ct-field__ctrl" data-t="area"
-                   min="0" max="5000" step="0.5" inputmode="decimal">
-          </label>
-        </div>
-      </div>
-
-      <div class="ct__out">
-        <div class="ct__out-title">Понадобится</div>
-        <div class="ct__rows" data-t-rows></div>
-        <a href="{{ calc_url }}" class="button button_size-l button_wide ct__btn" data-t-link>
-          {{ widget_settings.teaser_btn | default: 'Подробный расчёт' }}
-        </a>
-      </div>
+<div class="lama-showcase" data-lama-showcase>
+  <div class="lama-showcase__copy">
+    <div class="lama-showcase__brand">
+      <span class="lama-showcase__brand-line" aria-hidden="true"></span>
+      <span>{{ brand_name | escape }}</span>
     </div>
+
+    <h1 class="lama-showcase__title">
+      <span class="lama-showcase__title-line">{{ title_first | escape }}</span>
+      <span class="lama-showcase__title-line">
+        {{ title_second | escape }} <span class="lama-showcase__title-accent">{{ title_accent | escape }}</span>
+      </span>
+    </h1>
+
+    <p class="lama-showcase__text">{{ hero_text | escape }}</p>
   </div>
 
-  {% unless widget_settings.hide_promo %}
-  <div class="ct__promo">
-    <div class="ct__promo-ico">
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-        <path d="M14 3v5h5M9 13h6M9 17h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <div class="ct__promo-title">{{ widget_settings.promo_title }}</div>
-    <div class="ct__promo-text">{{ widget_settings.promo_text }}</div>
-    <a href="{{ widget_settings.promo_url | default: '/page/smeta' }}" class="ct__promo-btn">
-      {{ widget_settings.promo_btn | default: 'Отправить смету' }}
-      <span class="ct__promo-arrow">→</span>
-    </a>
-  </div>
-  {% endunless %}
+  <aside class="lama-showcase__aside" aria-label="Заказ материалов по смете">
+    <div class="lama-showcase__offer">
+      <div class="lama-showcase__offer-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false">
+          <path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          <path d="M14 3.5v4h4M9.5 12h5M9.5 15.5h3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </div>
 
+      <h2 class="lama-showcase__offer-title">{{ smeta_title | escape }}</h2>
+      <p class="lama-showcase__offer-text">{{ smeta_text | escape }}</p>
+
+      <a href="{{ smeta_url | escape }}" class="lama-showcase__offer-button">
+        <span>{{ smeta_btn | escape }}</span>
+        <span class="lama-showcase__offer-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </aside>
 </div>

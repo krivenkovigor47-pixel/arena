@@ -1,37 +1,33 @@
 {
-  "teaser_title": {
-    "ru": "Не знаете, сколько нужно материала?"
+  "brand_name": {
+    "ru": "ЛАМА СТРОЙ"
   },
-  "teaser_text": {
-    "ru": "Введите площадь — покажем, сколько уйдёт штукатурки, клея или плитки. Полный расчёт со всеми параметрами на отдельной странице."
+  "hero_title_first": {
+    "ru": "Стройматериалы,"
   },
-  "teaser_url": "/page/stroitelnyy-kalkulyator",
-  "teaser_btn": {
-    "ru": "Подробный расчёт"
+  "hero_title_second": {
+    "ru": "которые"
   },
-  "teaser-accent": "#5C8F4D",
-  "teaser-radius": 10,
-  "teaser-form-width": 360,
-  "teaser-stack": false,
-  "teaser-outline": false,
-  "teaser-hide-result": false,
-  "hide-text": false,
-  "bg": "#EDEDED",
-  "layout-wide-bg": true,
-  "layout-pt": 2,
-  "layout-pb": 2,
-  "layout-wide-content": false,
-  "layout-edge": false,
-  "ct-bg": "#F2F7EF",
+  "hero_title_accent": {
+    "ru": "не нужно искать"
+  },
+  "hero_text": {
+    "ru": "Черновые материалы в наличии, доставка на объект манипулятором. Пришлите список материалов — смета сразу в Excel или WhatsApp."
+  },
   "promo_title": {
-    "ru": "Присылайте смету — соберём заказ для вас"
+    "ru": "Скиньте смету — соберём заказ"
   },
   "promo_text": {
-    "ru": "Принимаем запрос на просчёт сметы любым удобным для вас способом: документом, фото необходимых материалов, голосовым сообщением, и т.д. Соберём заказ, подберём необходимые товары, посчитаем доставку."
+    "ru": "Фото сметы, список в блокноте, файл из проекта. Соберём корзину, подберём аналоги дешевле и посчитаем доставку."
   },
   "promo_btn": {
     "ru": "Отправить смету"
   },
   "promo_url": "/page/smeta",
-  "hide_promo": false
+  "bg": "#F4F5F3",
+  "layout-wide-bg": true,
+  "layout-pt": 2,
+  "layout-pb": 2,
+  "layout-wide-content": false,
+  "layout-edge": false
 }
