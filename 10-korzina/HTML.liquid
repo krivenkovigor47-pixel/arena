@@ -51,12 +51,18 @@
               <div class="item-rel" data-rel>
                 <span class="item-rel__label">К этому берут</span>
                 {% for r in rel %}
-                  <a href="{{ r.url }}" class="item-rel__link{% if forloop.index > 2 %} is-extra{% endif %}">
-                    <span class="item-rel__plus">+</span>{{ r.title | truncate: 34 }}<span class="item-rel__price">{{ r.price | money }}</span>
-                  </a>
+                  {% if forloop.index <= 4 %}
+                    <a href="{{ r.url }}" class="item-rel__link{% if forloop.index > 2 %} is-extra{% endif %}">
+                      <span class="item-rel__plus">+</span>{{ r.title | truncate: 25 }}<span class="item-rel__price">{{ r.price | money }}</span>
+                    </a>
+                  {% endif %}
                 {% endfor %}
                 {% if rel.size > 2 %}
-                  {% assign rest = rel.size | minus: 2 %}
+                  {% if rel.size > 4 %}
+                    {% assign rest = 2 %}
+                  {% else %}
+                    {% assign rest = rel.size | minus: 2 %}
+                  {% endif %}
                   <button type="button" class="item-rel__more" data-rel-more data-rest="{{ rest }}">ещё {{ rest }}</button>
                 {% endif %}
               </div>
