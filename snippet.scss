@@ -219,10 +219,20 @@
   }
 
   &__actions {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0.6rem;
+    display: block;
     margin-top: 0.25rem;
+  }
+
+  &__downloads {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+  }
+
+  &__btn_catalog {
+    display: flex;
+    width: 100%;
   }
 
   &__btn {

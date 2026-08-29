@@ -398,16 +398,19 @@
 
       <div class="wiz__actions">
         {% if widget_settings.calc_catalog_url != blank %}
-          <a href="{{ widget_settings.calc_catalog_url }}" class="button button_size-l button_wide wiz__btn">
+          <a href="{{ widget_settings.calc_catalog_url }}" class="button button_size-l button_wide wiz__btn wiz__btn_catalog">
             {{ widget_settings.calc_catalog_text }}
           </a>
         {% endif %}
-        <button type="button" class="button button_size-l button_wide wiz__btn wiz__btn_ghost" data-wiz-print>
-          Печать и PDF
-        </button>
-        <button type="button" class="button button_size-l button_wide wiz__btn wiz__btn_ghost" data-wiz-csv>
-          Скачать Excel
-        </button>
+
+        <div class="wiz__downloads">
+          <button type="button" class="button button_size-l button_wide wiz__btn wiz__btn_ghost" data-wiz-print>
+            Скачать PDF
+          </button>
+          <button type="button" class="button button_size-l button_wide wiz__btn wiz__btn_ghost" data-wiz-csv>
+            Скачать Excel
+          </button>
+        </div>
       </div>
 
       <p class="wiz__note">{{ widget_settings.calc_note }}</p>
