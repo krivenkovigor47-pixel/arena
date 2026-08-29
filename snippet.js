@@ -135,6 +135,7 @@ $(function() {
       scope: root.querySelector("[data-wiz-scope]"),
       goods: root.querySelector("[data-wiz-goods]"),
       tips: root.querySelector("[data-wiz-tips]"),
+      noSelection: root.querySelector("[data-wiz-no-selection]"),
       total: root.querySelector("[data-wiz-total]"),
       totalValue: root.querySelector("[data-wiz-total-value]"),
       prev: root.querySelector("[data-wiz-prev]"),
@@ -412,6 +413,8 @@ $(function() {
         if (scopeNode) scopeNode.textContent = "";
         if (rowsNode) {
           while (rowsNode.firstChild) rowsNode.removeChild(rowsNode.firstChild);
+          rowsNode.appendChild(el("div", "wiz__empty",
+            "Выберите вид работ выше — здесь появится расчёт."));
         }
         if (totalNode) totalNode.hidden = true;
         renderGoods([]);
@@ -631,6 +634,10 @@ $(function() {
 
       if (!pool || !pool.length) {
         while (box.firstChild) box.removeChild(box.firstChild);
+        if (!m) {
+          box.appendChild(el("div", "wiz__empty",
+            "Советы появятся после выбора вида работ."));
+        }
         return;
       }
 
@@ -669,6 +676,8 @@ $(function() {
 
     function showPanel() {
       var m = mode();
+
+      if (NODES.noSelection) NODES.noSelection.hidden = !!m;
 
       panels.forEach(function(p) {
         p.classList.toggle("is-active", p.getAttribute("data-calc-panel") === m);

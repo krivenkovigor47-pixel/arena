@@ -115,6 +115,17 @@
     margin-bottom: 1.1rem;
   }
 
+  &__no-selection {
+    margin-bottom: 2.25rem;
+    padding: 1rem 1.1rem;
+    border: 1px dashed var(--acc-line);
+    border-radius: 10px;
+    background: var(--acc-tint);
+    color: var(--color-text-half-shade);
+    font-size: .9rem;
+    line-height: 1.45;
+  }
+
   &__step-title {
     font-size: 1.05rem;
     font-weight: 600;
