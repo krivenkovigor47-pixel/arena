@@ -245,6 +245,12 @@
     }
   }
 
+  &__btn:disabled,
+  &__nav-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
   &__btn_ghost {
     background: transparent;
     color: var(--color-text);
@@ -324,6 +330,23 @@
       &:hover .wiz__tip-more {
         text-decoration: underline;
       }
+    }
+  }
+
+  &__tip-media {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 0.85rem;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--bg-major-shade);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 
