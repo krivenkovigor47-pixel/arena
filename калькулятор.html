@@ -6,9 +6,9 @@
      data-video-floor="{{ widget_settings.video_floor | strip_html | escape }}"
      data-video-insulation="{{ widget_settings.video_insulation | strip_html | escape }}"
      data-video-masonry="{{ widget_settings.video_masonry | strip_html | escape }}"
-     data-company="{{ widget_settings.calc_company }}"
-     data-whatsapp="{{ widget_settings.msg_whatsapp }}"
-     data-telegram="{{ widget_settings.msg_telegram }}">
+     data-company="{{ widget_settings.calc_company | strip_html | escape }}"
+     data-whatsapp="{{ widget_settings.msg_whatsapp | strip_html | escape }}"
+     data-telegram="{{ widget_settings.msg_telegram | strip_html | escape }}">
 
   {% if widget_settings.calc_title != blank or widget_settings.calc_subtitle != blank %}
   <div class="wiz__head">
@@ -35,13 +35,12 @@
 
       <section class="wiz__step is-current" data-wiz-step="1">
         <div class="wiz__step-head">
-          <span class="wiz__num">1</span>
           <span class="wiz__step-title">Что считаем</span>
         </div>
 
         <div class="wiz__tiles">
           <label class="tile">
-            <input type="radio" name="wiz-mode" value="plaster" checked>
+            <input type="radio" name="wiz-mode" value="plaster">
             <span class="tile__in">
               <span class="tile__name">Штукатурка</span>
               <span class="tile__sub">выравнивание стен, бетоноконтакт</span>
@@ -58,7 +57,7 @@
             <input type="radio" name="wiz-mode" value="tile">
             <span class="tile__in">
               <span class="tile__name">Плитка</span>
-              <span class="tile__sub">клей, крестики, СВП</span>
+              <span class="tile__sub">клей, затирка, крестики, СВП</span>
             </span>
           </label>
           <label class="tile">
@@ -94,20 +93,23 @@
 
       <section class="wiz__step" data-wiz-step="2">
         <div class="wiz__step-head">
-          <span class="wiz__num">2</span>
           <span class="wiz__step-title">Размеры и параметры</span>
+        </div>
+
+        <div class="wiz__no-selection" data-wiz-no-selection>
+          Выберите вид работ выше — появятся необходимые параметры.
         </div>
 
         <div class="wiz__panel is-active" data-calc-panel="plaster">
           <div class="wiz__grid">
             <label class="f">
               <span class="f__label">Суммарная длина стен, м</span>
-              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
               <span class="f__hint">Сложите длины всех стен. Комната 5 × 3 м даёт 16 м</span>
             </label>
             <label class="f">
               <span class="f__label">Высота стен, м</span>
-              <input type="number" class="f__ctrl" data-f="height" min="0" max="10" step="0.05" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="height" min="0" max="10" step="0.05" inputmode="decimal" required aria-required="true">
               <span class="f__hint">От пола до потолка</span>
             </label>
             <label class="f">
@@ -135,12 +137,12 @@
           <div class="wiz__grid">
             <label class="f">
               <span class="f__label">Суммарная длина стен, м</span>
-              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
               <span class="f__hint">Сложите длины всех стен</span>
             </label>
             <label class="f">
               <span class="f__label">Высота стен, м</span>
-              <input type="number" class="f__ctrl" data-f="height" min="0" max="10" step="0.05" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="height" min="0" max="10" step="0.05" inputmode="decimal" required aria-required="true">
             </label>
             <label class="f">
               <span class="f__label">Проёмы, м&sup2;</span>
@@ -164,12 +166,12 @@
           <div class="wiz__grid">
             <label class="f">
               <span class="f__label">Длина участка, м</span>
-              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
               <span class="f__hint">Для пола — длина комнаты, для стены — её ширина</span>
             </label>
             <label class="f">
               <span class="f__label">Вторая сторона, м</span>
-              <input type="number" class="f__ctrl" data-f="height" min="0" max="500" step="0.1" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="height" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
               <span class="f__hint">Для пола — ширина комнаты, для стены — высота укладки</span>
             </label>
             <label class="f">
@@ -236,12 +238,12 @@
           <div class="wiz__grid">
             <label class="f">
               <span class="f__label">Длина конструкции, м</span>
-              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
               <span class="f__hint">Для стены — её длина, для потолка — длина комнаты</span>
             </label>
             <label class="f">
               <span class="f__label">Вторая сторона, м</span>
-              <input type="number" class="f__ctrl" data-f="height" min="0" max="500" step="0.05" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="height" min="0" max="500" step="0.05" inputmode="decimal" required aria-required="true">
               <span class="f__hint">Для стены — высота, для потолка — ширина комнаты</span>
             </label>
             <label class="f">
@@ -275,7 +277,7 @@
           <div class="wiz__grid">
             <label class="f">
               <span class="f__label">Площадь пола, м&sup2;</span>
-              <input type="number" class="f__ctrl" data-f="area" min="0" max="5000" step="0.1" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="area" min="0" max="5000" step="0.1" inputmode="decimal" required aria-required="true">
               <span class="f__hint">Длина умножить на ширину помещения</span>
             </label>
             <label class="f">
@@ -302,12 +304,12 @@
           <div class="wiz__grid">
             <label class="f">
               <span class="f__label">Длина, м</span>
-              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
               <span class="f__hint">Длина стены, ската или пола</span>
             </label>
             <label class="f">
               <span class="f__label">Вторая сторона, м</span>
-              <input type="number" class="f__ctrl" data-f="height" min="0" max="500" step="0.1" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="height" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
               <span class="f__hint">Высота стены или ширина ската</span>
             </label>
             <label class="f">
@@ -332,7 +334,7 @@
           <div class="wiz__grid">
             <label class="f">
               <span class="f__label">Длина стены, м</span>
-              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
               <span class="f__hint">Если стены разной длины — сложите их и оставьте количество 1</span>
             </label>
             <label class="f">
@@ -342,7 +344,7 @@
             </label>
             <label class="f">
               <span class="f__label">Высота стены, м</span>
-              <input type="number" class="f__ctrl" data-f="height" min="0" max="20" step="0.05" inputmode="decimal">
+              <input type="number" class="f__ctrl" data-f="height" min="0" max="20" step="0.05" inputmode="decimal" required aria-required="true">
             </label>
             <label class="f">
               <span class="f__label">Проёмы, м&sup2;</span>
@@ -382,7 +384,6 @@
 
     <section class="wiz__step wiz__result" data-wiz-step="3">
       <div class="wiz__step-head">
-        <span class="wiz__num">3</span>
         <span class="wiz__step-title">Что понадобится</span>
       </div>
 
@@ -398,16 +399,19 @@
 
       <div class="wiz__actions">
         {% if widget_settings.calc_catalog_url != blank %}
-          <a href="{{ widget_settings.calc_catalog_url }}" class="button button_size-l button_wide wiz__btn">
-            {{ widget_settings.calc_catalog_text }}
+          <a href="{{ widget_settings.calc_catalog_url | escape }}" class="button button_size-l button_wide wiz__btn wiz__btn_catalog">
+            {{ widget_settings.calc_catalog_text | escape }}
           </a>
         {% endif %}
-        <button type="button" class="button button_size-l button_wide wiz__btn wiz__btn_ghost" data-wiz-print>
-          Печать и PDF
-        </button>
-        <button type="button" class="button button_size-l button_wide wiz__btn wiz__btn_ghost" data-wiz-csv>
-          Скачать Excel
-        </button>
+
+        <div class="wiz__downloads">
+          <button type="button" class="button button_size-l button_wide wiz__btn wiz__btn_ghost" data-wiz-print>
+            Скачать PDF
+          </button>
+          <button type="button" class="button button_size-l button_wide wiz__btn wiz__btn_ghost" data-wiz-csv>
+            Скачать Excel
+          </button>
+        </div>
       </div>
 
       <p class="wiz__note">{{ widget_settings.calc_note }}</p>
@@ -420,7 +424,7 @@
     <div class="wiz__tips-grid" data-wiz-tips></div>
   </div>
 
-  <div class="wiz__modal" data-wiz-modal hidden>
+  <div class="wiz__modal" data-wiz-modal hidden role="dialog" aria-modal="true" aria-label="Видео">
     <div class="wiz__modal-in">
       <button type="button" class="wiz__modal-x" data-wiz-modal-x aria-label="Закрыть">
         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
@@ -433,6 +437,7 @@
   </div>
 
   <div class="wiz__nav" data-wiz-nav>
+    <p class="wiz__validation" data-wiz-validation role="alert" aria-live="polite" hidden></p>
     <button type="button" class="button button_size-l wiz__nav-btn wiz__btn_ghost" data-wiz-prev disabled>Назад</button>
     <button type="button" class="button button_size-l wiz__nav-btn" data-wiz-next>Далее</button>
   </div>

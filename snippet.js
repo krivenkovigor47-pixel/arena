@@ -1,3 +1,5 @@
+(function () {
+
 var NORMS = {
   plasterGypsum: 8.5,        // кг/м² на 10 мм
   plasterCement: 17,         // кг/м² на 10 мм
@@ -29,7 +31,485 @@ var PACKS = {
   tileGlue: 25, grout: 2, screed: 40, selfLevel: 20, blockGlue: 25
 };
 
-var PRODUCTS = {"plaster_gypsum":[{"a":"45540878","n":"Штукатурка гипсовая KNAUF «Гольдбанд» 30 кг","p":30.0},{"a":"45540879","n":"Штукатурка гипсовая KNAUF «Ротбанд» 30 кг","p":30.0},{"a":"45540880","n":"Штукатурка гипсовая KNAUF МП 75 30 кг белый","p":30.0},{"a":"45540881","n":"Штукатурка гипсовая KNAUF МП 75 30 кг серый","p":30.0},{"a":"45540882","n":"Штукатурка гипсовая UNIS Теплон белый 30 кг","p":30.0},{"a":"45540883","n":"Штукатурка гипсовая Волма-Слой 30 кг","p":30.0}],"putty":[{"a":"45540866","n":"DANOGIPS SuperFinish шпатлевка гипсовая 28 кг/17 л (Sheetrock)","p":28.0},{"a":"45540870","n":"Шпаклевка гипсовая KNAUF Унихард 20 кг","p":20.0},{"a":"45540871","n":"Шпаклевка гипсовая KNAUF Фуген 30 кг","p":30.0},{"a":"45540872","n":"Шпаклевка для заделки швов Knauf Унифлот 5 кг","p":5.0},{"a":"45540873","n":"Шпаклевка полимерная Danogips Dano Jet 5 выравнивающая 25 кг","p":25.0},{"a":"45540874","n":"Шпаклевка связующая белая Vetonit KR 20 кг","p":20.0}],"primer_concrete":[{"a":"45540844","n":"Бетогрунт KNAUF 15 кг","p":15.0},{"a":"45540845","n":"Бетоноконтакт Ceresit СТ 19 15 кг","p":15.0},{"a":"45540846","n":"Бетоноконтакт Юнис 20 кг","p":20.0},{"a":"45540847","n":"Грунт бетоноконтакт jetbau 14 кг","p":14.0},{"a":"45540862","n":"Бетоноконтакт Старатели 20 кг","p":20.0}],"primer_deep":[{"a":"45540849","n":"Грунтовка Ceresit CT17 PRO 10 кг","p":10.0},{"a":"45540850","n":"Грунтовка KNAUF Миттельгрунд 10 кг","p":10.0},{"a":"45540851","n":"Грунтовка KNAUF Тифенгрунд 10 кг","p":10.0},{"a":"45540852","n":"Грунтовка OSCAR глубокого проникновения 10 кг","p":10.0}],"tile_glue":[{"a":"45540578","n":"Клей плиточный Ceresit CM 11 25 кг","p":25.0},{"a":"45540579","n":"Клей плиточный Ceresit CM 14 25 кг","p":25.0},{"a":"45540580","n":"Клей плиточный Ceresit CM 16 25 кг","p":25.0},{"a":"45540581","n":"Клей плиточный Litokol K17, 25 кг","p":25.0},{"a":"45540582","n":"Клей плиточный Litokol Litoflex K80, 25 кг","p":25.0},{"a":"45540583","n":"Клей плиточный Litokol Litoplus K55, 25 кг (белый)","p":25.0}],"tile_cross":[{"a":"45540593","n":"Крестики для кафеля 1,0 мм, 200 шт","p":200.0},{"a":"45540594","n":"Крестики для кафеля 1,5 мм, 200 шт","p":200.0},{"a":"45540595","n":"Крестики для кафеля 2,0 мм, 200 шт","p":200.0},{"a":"45540596","n":"Крестики для кафеля 2,5 мм, 200 шт","p":200.0}],"svp_clip":[{"a":"45540597","n":"3Д PLM Norm свп зажим (100) 1,5 мм","p":100.0},{"a":"45540598","n":"3Д PLM Norm свп зажим (100) 1 мм","p":100.0},{"a":"45540605","n":"СВП зажим 0,8 мм Slim 500 шт 3D KRESTIKI","p":500.0},{"a":"45540606","n":"СВП зажим 1,5 мм Slim 500 шт 3D KRESTIKI","p":500.0}],"svp_wedge":[{"a":"45540600","n":"Клин для кафельной плитки большой, 32 × 8 × 9 мм, 50 шт","p":50.0},{"a":"45540601","n":"Клин для кафельной плитки малый 27 × 6 × 6 мм, 100 шт","p":100.0},{"a":"45540602","n":"Клин для свп ЖЕЛТЫЙ 200 шт","p":200.0},{"a":"45540604","n":"СВП Клин 50 шт, пакет","p":50.0}],"gkl":[{"a":"45540056","n":"KNAUF ГВЛ 2500 × 1200 × 10 влагостойкий","p":null},{"a":"45540057","n":"KNAUF ГВЛ 2500 × 1200 × 12,5 влагостойкий","p":null},{"a":"45540058","n":"KNAUF ГКЛ 12,5 × 2500 × 1200 обычный","p":null},{"a":"45540059","n":"KNAUF ГКЛ 9,5 × 2500 × 1200 обычный","p":null},{"a":"45540060","n":"KNAUF ГКЛ 12,5 × 2000 × 1200 обычный","p":null},{"a":"45540061","n":"KNAUF ГКЛв 12,5 × 2000 × 1200 влагостойкий","p":null}],"profile_stud":[{"a":"45540085","n":"Профиль ПП 60 × 27 × 3000 KNAUF","p":null},{"a":"45540087","n":"Профиль ПС-2 50 × 50 × 3000 KNAUF","p":null},{"a":"45540088","n":"Профиль ПС-5 75 × 50 × 3000 KNAUF","p":null},{"a":"45540089","n":"Профиль ПС-6 100 × 50 × 3000 KNAUF","p":null}],"profile_guide":[{"a":"45540082","n":"Профиль ПН-2 50 × 40 × 3000 KNAUF","p":null},{"a":"45540083","n":"Профиль ПН-5 75 × 40 × 3000 KNAUF","p":null},{"a":"45540084","n":"Профиль ПН-6 100 × 40 × 3000 KNAUF","p":null}],"hanger":[{"a":"45540076","n":"Подвес прямой 60 × 27 антивибрационный KNAUF 0,9 мм","p":null},{"a":"45540077","n":"Прямой подвес 60 × 27 × 0,7","p":null}],"screw":[{"a":"45540392","n":"Саморез кровельный цинк. 5,5 × 25","p":null},{"a":"45540393","n":"Саморез кровельный цинк. 5,5 × 38","p":null},{"a":"45540394","n":"Саморез кровельный цинк. 5,5 × 51","p":null},{"a":"45540395","n":"Саморез кровельный цинк. 5,5 × 80","p":null},{"a":"45540396","n":"Саморез клопы 5 × 11, фосфатированный, острый","p":null},{"a":"45540397","n":"Саморез с прессшайбой 4,2 × 13 головка п/сферическая, острый","p":null}],"screed":[{"a":"45540859","n":"Пескобетон М-300 Евромикс, 40 кг","p":40.0},{"a":"45540860","n":"Пескобетон М-300 Русеан, 40 кг","p":40.0}],"self_level":[{"a":"45540863","n":"Наливной пол UNIS Горизонт Универсальный, 20 кг","p":20.0},{"a":"45540864","n":"Наливной пол Быстротвердеющий Старатели 20 кг","p":20.0},{"a":"45540865","n":"Наливной пол Волма Нивелир Экспресс 20 кг","p":20.0},{"a":"45540867","n":"Наливной пол Weber Vetonit FAST 4100 20 кг","p":20.0},{"a":"45540868","n":"Наливной пол Weber Vetonit FAST 3000, 20 кг","p":20.0},{"a":"45540869","n":"Наливной пол Weber Vetonit FAST 4000, 20 кг","p":20.0}],"insulation":[{"a":"45540117","n":"Rockwool Рок Фасад 1000 × 600 × 100 мм (1,2 м²)","p":null},{"a":"45540118","n":"Rockwool Скандик 100 мм (2,88 м²)","p":null},{"a":"45540119","n":"Rockwool Скандик 50 мм (4,76 м²)","p":null},{"a":"45540120","n":"Rockwool Рок Фасад 1000 × 600 × 50 мм (2,4 м²)","p":null},{"a":"45540131","n":"ПЕНОПЛЭКС Утеплитель экструз. 20 × 585 × 1185 20 шт","p":20.0},{"a":"45540132","n":"ПЕНОПЛЭКС Утеплитель экструз. 100 × 585 × 1185 4 шт 2,74 м²","p":4.0}],"brick":[{"a":"45540826","n":"Кирпич строительный красный полнотелый 250 × 120 × 65","p":null}],"block":[{"a":"45540821","n":"Газобетонный блок Бонолит D500 600 × 250 × 100 мм","p":null},{"a":"45540822","n":"Газобетонный блок Бонолит D500 600 × 250 × 150 мм","p":null},{"a":"45540823","n":"Газобетонный блок Бонолит D500 600 × 250 × 200 мм","p":null},{"a":"45540824","n":"Газобетонный блок Бонолит D500 600 × 250 × 50 мм","p":null},{"a":"45540825","n":"Газобетонный блок Бонолит D500 600 × 250 × 75 мм","p":null}],"block_glue":[{"a":"45540858","n":"Клей для кладки блоков Волма блок 25 кг","p":25.0}],"mortar":[{"a":"45540855","n":"Кладочная смесь М-200 Русеан 40 кг","p":40.0}],"tape":[{"a":"45540090","n":"KNAUF Дихтунгсбанд (лента для профилей) 30 мм × 30 м","p":null},{"a":"45540091","n":"KNAUF Дихтунгсбанд (лента для профилей) 50 мм × 30 м","p":null},{"a":"45540092","n":"KNAUF Дихтунгсбанд (лента для профилей) 70 мм × 30 м","p":null},{"a":"45540093","n":"KNAUF Дихтунгсбанд (лента для профилей) 95 мм × 30 м","p":null},{"a":"45540094","n":"Перфорированная лента прямая 20 × 25 м","p":null}]};
+var PRODUCTS = {
+  "plaster_gypsum": [
+    {
+      "a": "45540878",
+      "n": "Штукатурка гипсовая KNAUF «Гольдбанд» 30 кг",
+      "p": 30.0
+    },
+    {
+      "a": "45540879",
+      "n": "Штукатурка гипсовая KNAUF «Ротбанд» 30 кг",
+      "p": 30.0
+    },
+    {
+      "a": "45540880",
+      "n": "Штукатурка гипсовая KNAUF МП 75 30 кг белый",
+      "p": 30.0
+    },
+    {
+      "a": "45540881",
+      "n": "Штукатурка гипсовая KNAUF МП 75 30 кг серый",
+      "p": 30.0
+    },
+    {
+      "a": "45540882",
+      "n": "Штукатурка гипсовая UNIS Теплон белый 30 кг",
+      "p": 30.0
+    },
+    {
+      "a": "45540883",
+      "n": "Штукатурка гипсовая Волма-Слой 30 кг",
+      "p": 30.0
+    }
+  ],
+  "putty": [
+    {
+      "a": "45540866",
+      "n": "DANOGIPS SuperFinish шпатлевка гипсовая 28 кг/17 л (Sheetrock)",
+      "p": 28.0
+    },
+    {
+      "a": "45540870",
+      "n": "Шпаклевка гипсовая KNAUF Унихард 20 кг",
+      "p": 20.0
+    },
+    {
+      "a": "45540871",
+      "n": "Шпаклевка гипсовая KNAUF Фуген 30 кг",
+      "p": 30.0
+    },
+    {
+      "a": "45540872",
+      "n": "Шпаклевка для заделки швов Knauf Унифлот 5 кг",
+      "p": 5.0
+    },
+    {
+      "a": "45540873",
+      "n": "Шпаклевка полимерная Danogips Dano Jet 5 выравнивающая 25 кг",
+      "p": 25.0
+    },
+    {
+      "a": "45540874",
+      "n": "Шпаклевка связующая белая Vetonit KR 20 кг",
+      "p": 20.0
+    }
+  ],
+  "primer_concrete": [
+    {
+      "a": "45540844",
+      "n": "Бетогрунт KNAUF 15 кг",
+      "p": 15.0
+    },
+    {
+      "a": "45540845",
+      "n": "Бетоноконтакт Ceresit СТ 19 15 кг",
+      "p": 15.0
+    },
+    {
+      "a": "45540846",
+      "n": "Бетоноконтакт Юнис 20 кг",
+      "p": 20.0
+    },
+    {
+      "a": "45540847",
+      "n": "Грунт бетоноконтакт jetbau 14 кг",
+      "p": 14.0
+    },
+    {
+      "a": "45540862",
+      "n": "Бетоноконтакт Старатели 20 кг",
+      "p": 20.0
+    }
+  ],
+  "primer_deep": [
+    {
+      "a": "45540849",
+      "n": "Грунтовка Ceresit CT17 PRO 10 кг",
+      "p": 10.0
+    },
+    {
+      "a": "45540850",
+      "n": "Грунтовка KNAUF Миттельгрунд 10 кг",
+      "p": 10.0
+    },
+    {
+      "a": "45540851",
+      "n": "Грунтовка KNAUF Тифенгрунд 10 кг",
+      "p": 10.0
+    },
+    {
+      "a": "45540852",
+      "n": "Грунтовка OSCAR глубокого проникновения 10 кг",
+      "p": 10.0
+    }
+  ],
+  "tile_glue": [
+    {
+      "a": "45540578",
+      "n": "Клей плиточный Ceresit CM 11 25 кг",
+      "p": 25.0
+    },
+    {
+      "a": "45540579",
+      "n": "Клей плиточный Ceresit CM 14 25 кг",
+      "p": 25.0
+    },
+    {
+      "a": "45540580",
+      "n": "Клей плиточный Ceresit CM 16 25 кг",
+      "p": 25.0
+    },
+    {
+      "a": "45540581",
+      "n": "Клей плиточный Litokol K17, 25 кг",
+      "p": 25.0
+    },
+    {
+      "a": "45540582",
+      "n": "Клей плиточный Litokol Litoflex K80, 25 кг",
+      "p": 25.0
+    },
+    {
+      "a": "45540583",
+      "n": "Клей плиточный Litokol Litoplus K55, 25 кг (белый)",
+      "p": 25.0
+    }
+  ],
+  "tile_cross": [
+    {
+      "a": "45540593",
+      "n": "Крестики для кафеля 1,0 мм, 200 шт",
+      "p": 200.0
+    },
+    {
+      "a": "45540594",
+      "n": "Крестики для кафеля 1,5 мм, 200 шт",
+      "p": 200.0
+    },
+    {
+      "a": "45540595",
+      "n": "Крестики для кафеля 2,0 мм, 200 шт",
+      "p": 200.0
+    },
+    {
+      "a": "45540596",
+      "n": "Крестики для кафеля 2,5 мм, 200 шт",
+      "p": 200.0
+    }
+  ],
+  "svp_clip": [
+    {
+      "a": "45540597",
+      "n": "3Д PLM Norm свп зажим (100) 1,5 мм",
+      "p": 100.0
+    },
+    {
+      "a": "45540598",
+      "n": "3Д PLM Norm свп зажим (100) 1 мм",
+      "p": 100.0
+    },
+    {
+      "a": "45540605",
+      "n": "СВП зажим 0,8 мм Slim 500 шт 3D KRESTIKI",
+      "p": 500.0
+    },
+    {
+      "a": "45540606",
+      "n": "СВП зажим 1,5 мм Slim 500 шт 3D KRESTIKI",
+      "p": 500.0
+    }
+  ],
+  "svp_wedge": [
+    {
+      "a": "45540600",
+      "n": "Клин для кафельной плитки большой, 32 × 8 × 9 мм, 50 шт",
+      "p": 50.0
+    },
+    {
+      "a": "45540601",
+      "n": "Клин для кафельной плитки малый 27 × 6 × 6 мм, 100 шт",
+      "p": 100.0
+    },
+    {
+      "a": "45540602",
+      "n": "Клин для свп ЖЕЛТЫЙ 200 шт",
+      "p": 200.0
+    },
+    {
+      "a": "45540604",
+      "n": "СВП Клин 50 шт, пакет",
+      "p": 50.0
+    }
+  ],
+  "gkl": [
+    {
+      "a": "45540056",
+      "n": "KNAUF ГВЛ 2500 × 1200 × 10 влагостойкий",
+      "p": null
+    },
+    {
+      "a": "45540057",
+      "n": "KNAUF ГВЛ 2500 × 1200 × 12,5 влагостойкий",
+      "p": null
+    },
+    {
+      "a": "45540058",
+      "n": "KNAUF ГКЛ 12,5 × 2500 × 1200 обычный",
+      "p": null
+    },
+    {
+      "a": "45540059",
+      "n": "KNAUF ГКЛ 9,5 × 2500 × 1200 обычный",
+      "p": null
+    },
+    {
+      "a": "45540060",
+      "n": "KNAUF ГКЛ 12,5 × 2000 × 1200 обычный",
+      "p": null
+    },
+    {
+      "a": "45540061",
+      "n": "KNAUF ГКЛв 12,5 × 2000 × 1200 влагостойкий",
+      "p": null
+    }
+  ],
+  "profile_stud": [
+    {
+      "a": "45540085",
+      "n": "Профиль ПП 60 × 27 × 3000 KNAUF",
+      "p": null
+    },
+    {
+      "a": "45540087",
+      "n": "Профиль ПС-2 50 × 50 × 3000 KNAUF",
+      "p": null
+    },
+    {
+      "a": "45540088",
+      "n": "Профиль ПС-5 75 × 50 × 3000 KNAUF",
+      "p": null
+    },
+    {
+      "a": "45540089",
+      "n": "Профиль ПС-6 100 × 50 × 3000 KNAUF",
+      "p": null
+    }
+  ],
+  "profile_guide": [
+    {
+      "a": "45540082",
+      "n": "Профиль ПН-2 50 × 40 × 3000 KNAUF",
+      "p": null
+    },
+    {
+      "a": "45540083",
+      "n": "Профиль ПН-5 75 × 40 × 3000 KNAUF",
+      "p": null
+    },
+    {
+      "a": "45540084",
+      "n": "Профиль ПН-6 100 × 40 × 3000 KNAUF",
+      "p": null
+    }
+  ],
+  "hanger": [
+    {
+      "a": "45540076",
+      "n": "Подвес прямой 60 × 27 антивибрационный KNAUF 0,9 мм",
+      "p": null
+    },
+    {
+      "a": "45540077",
+      "n": "Прямой подвес 60 × 27 × 0,7",
+      "p": null
+    }
+  ],
+  "screw": [
+    {
+      "a": "45540392",
+      "n": "Саморез кровельный цинк. 5,5 × 25",
+      "p": null
+    },
+    {
+      "a": "45540393",
+      "n": "Саморез кровельный цинк. 5,5 × 38",
+      "p": null
+    },
+    {
+      "a": "45540394",
+      "n": "Саморез кровельный цинк. 5,5 × 51",
+      "p": null
+    },
+    {
+      "a": "45540395",
+      "n": "Саморез кровельный цинк. 5,5 × 80",
+      "p": null
+    },
+    {
+      "a": "45540396",
+      "n": "Саморез клопы 5 × 11, фосфатированный, острый",
+      "p": null
+    },
+    {
+      "a": "45540397",
+      "n": "Саморез с прессшайбой 4,2 × 13 головка п/сферическая, острый",
+      "p": null
+    }
+  ],
+  "screed": [
+    {
+      "a": "45540859",
+      "n": "Пескобетон М-300 Евромикс, 40 кг",
+      "p": 40.0
+    },
+    {
+      "a": "45540860",
+      "n": "Пескобетон М-300 Русеан, 40 кг",
+      "p": 40.0
+    }
+  ],
+  "self_level": [
+    {
+      "a": "45540863",
+      "n": "Наливной пол UNIS Горизонт Универсальный, 20 кг",
+      "p": 20.0
+    },
+    {
+      "a": "45540864",
+      "n": "Наливной пол Быстротвердеющий Старатели 20 кг",
+      "p": 20.0
+    },
+    {
+      "a": "45540865",
+      "n": "Наливной пол Волма Нивелир Экспресс 20 кг",
+      "p": 20.0
+    },
+    {
+      "a": "45540867",
+      "n": "Наливной пол Weber Vetonit FAST 4100 20 кг",
+      "p": 20.0
+    },
+    {
+      "a": "45540868",
+      "n": "Наливной пол Weber Vetonit FAST 3000, 20 кг",
+      "p": 20.0
+    },
+    {
+      "a": "45540869",
+      "n": "Наливной пол Weber Vetonit FAST 4000, 20 кг",
+      "p": 20.0
+    }
+  ],
+  "insulation": [
+    {
+      "a": "45540117",
+      "n": "Rockwool Рок Фасад 1000 × 600 × 100 мм (1,2 м²)",
+      "p": null
+    },
+    {
+      "a": "45540118",
+      "n": "Rockwool Скандик 100 мм (2,88 м²)",
+      "p": null
+    },
+    {
+      "a": "45540119",
+      "n": "Rockwool Скандик 50 мм (4,76 м²)",
+      "p": null
+    },
+    {
+      "a": "45540120",
+      "n": "Rockwool Рок Фасад 1000 × 600 × 50 мм (2,4 м²)",
+      "p": null
+    },
+    {
+      "a": "45540131",
+      "n": "ПЕНОПЛЭКС Утеплитель экструз. 20 × 585 × 1185 20 шт",
+      "p": 20.0
+    },
+    {
+      "a": "45540132",
+      "n": "ПЕНОПЛЭКС Утеплитель экструз. 100 × 585 × 1185 4 шт 2,74 м²",
+      "p": 4.0
+    }
+  ],
+  "brick": [
+    {
+      "a": "45540826",
+      "n": "Кирпич строительный красный полнотелый 250 × 120 × 65",
+      "p": null
+    }
+  ],
+  "block": [
+    {
+      "a": "45540821",
+      "n": "Газобетонный блок Бонолит D500 600 × 250 × 100 мм",
+      "p": null
+    },
+    {
+      "a": "45540822",
+      "n": "Газобетонный блок Бонолит D500 600 × 250 × 150 мм",
+      "p": null
+    },
+    {
+      "a": "45540823",
+      "n": "Газобетонный блок Бонолит D500 600 × 250 × 200 мм",
+      "p": null
+    },
+    {
+      "a": "45540824",
+      "n": "Газобетонный блок Бонолит D500 600 × 250 × 50 мм",
+      "p": null
+    },
+    {
+      "a": "45540825",
+      "n": "Газобетонный блок Бонолит D500 600 × 250 × 75 мм",
+      "p": null
+    }
+  ],
+  "block_glue": [
+    {
+      "a": "45540858",
+      "n": "Клей для кладки блоков Волма блок 25 кг",
+      "p": 25.0
+    }
+  ],
+  "mortar": [
+    {
+      "a": "45540855",
+      "n": "Кладочная смесь М-200 Русеан 40 кг",
+      "p": 40.0
+    }
+  ],
+  "tape": [
+    {
+      "a": "45540090",
+      "n": "KNAUF Дихтунгсбанд (лента для профилей) 30 мм × 30 м",
+      "p": null
+    },
+    {
+      "a": "45540091",
+      "n": "KNAUF Дихтунгсбанд (лента для профилей) 50 мм × 30 м",
+      "p": null
+    },
+    {
+      "a": "45540092",
+      "n": "KNAUF Дихтунгсбанд (лента для профилей) 70 мм × 30 м",
+      "p": null
+    },
+    {
+      "a": "45540093",
+      "n": "KNAUF Дихтунгсбанд (лента для профилей) 95 мм × 30 м",
+      "p": null
+    },
+    {
+      "a": "45540094",
+      "n": "Перфорированная лента прямая 20 × 25 м",
+      "p": null
+    }
+  ]
+};
 
 var TIPS = {
   plaster: [
@@ -101,8 +581,8 @@ var MODE_TITLES = {
 };
 
 $(function() {
-  $widget.each(function(widgetIndex, thisWidget) {
-    var root = $(thisWidget).find("[data-wiz]")[0];
+  $widget.each(function() {
+    var root = $(this).find("[data-wiz]")[0];
     if (!root) return;
     if (root.getAttribute("data-wiz-ready")) return;
     root.setAttribute("data-wiz-ready", "1");
@@ -125,7 +605,7 @@ $(function() {
         var parts = line.split("=");
         if (parts.length !== 2) return;
         var key = parts[0].trim();
-        var val = parseFloat(parts[1].replace(",", ".").trim());
+        var val = parseNumber(parts[1]);
         if (key && !isNaN(val)) prices[key] = val;
       });
     }
@@ -135,17 +615,21 @@ $(function() {
       scope: root.querySelector("[data-wiz-scope]"),
       goods: root.querySelector("[data-wiz-goods]"),
       tips: root.querySelector("[data-wiz-tips]"),
+      noSelection: root.querySelector("[data-wiz-no-selection]"),
       total: root.querySelector("[data-wiz-total]"),
       totalValue: root.querySelector("[data-wiz-total-value]"),
       prev: root.querySelector("[data-wiz-prev]"),
-      next: root.querySelector("[data-wiz-next]")
+      next: root.querySelector("[data-wiz-next]"),
+      print: root.querySelector("[data-wiz-print]"),
+      csv: root.querySelector("[data-wiz-csv]"),
+      validation: root.querySelector("[data-wiz-validation]")
     };
 
     var fieldCache = {};
 
     function mode() {
       var checked = root.querySelector('input[name="wiz-mode"]:checked');
-      return checked ? checked.value : "walls";
+      return checked ? checked.value : "";
     }
 
     function field(m, name) {
@@ -156,9 +640,17 @@ $(function() {
       return fieldCache[key];
     }
 
+    function parseNumber(value) {
+      var raw = String(value == null ? "" : value).trim();
+      if (!raw) return NaN;
+
+      var v = parseFloat(raw.replace(",", "."));
+      return isNaN(v) ? NaN : v;
+    }
+
     function clamp(el, v) {
-      var mn = parseFloat(el.getAttribute("min"));
-      var mx = parseFloat(el.getAttribute("max"));
+      var mn = parseNumber(el.getAttribute("min"));
+      var mx = parseNumber(el.getAttribute("max"));
       if (!isNaN(mn) && v < mn) v = mn;
       if (!isNaN(mx) && v > mx) v = mx;
       return v;
@@ -171,7 +663,7 @@ $(function() {
       var raw = String(el.value).trim();
       if (raw === "") raw = String(el.getAttribute("data-default") || "").trim();
 
-      var v = parseFloat(raw.replace(",", "."));
+      var v = parseNumber(raw);
       return isNaN(v) ? 0 : clamp(el, v);
     }
 
@@ -250,7 +742,7 @@ $(function() {
       var h = num("tile", "tileH");
       var joint = num("tile", "joint");
       var notch = num("tile", "notch");
-      var reserve = parseFloat(str("tile", "layout")) || 1.1;
+      var reserve = parseNumber(str("tile", "layout")) || 1.1;
       var rows = [];
       var areaWithReserve = area * reserve;
       var tiles = 0;
@@ -260,6 +752,12 @@ $(function() {
         tiles = Math.ceil(areaWithReserve / tileArea);
         rows.push(row("tile", "Плитка", areaWithReserve, "м\u00B2", null, null));
         rows.push(row("tile_pcs", "\u2014 это примерно", tiles, "шт", null, null));
+
+        if (area > 0 && h > 0 && joint > 0) {
+          var groutPerSquareMeter = ((a + b) / (a * b)) * joint * h * NORMS.groutDensity;
+          rows.push(row("grout", "Затирка для швов",
+            area * groutPerSquareMeter, "кг", PACKS.grout, "пакет 2 кг"));
+        }
       }
 
       rows.push(row("tile_glue", "Клей плиточный",
@@ -401,25 +899,96 @@ $(function() {
       return node;
     }
 
+    function clearChildren(node) {
+      if (!node) return;
+      while (node.firstChild) node.removeChild(node.firstChild);
+    }
+
+    function createResultRow() {
+      var line = el("div", "wiz-row");
+      line.appendChild(el("span", "wiz-row__name"));
+      line.appendChild(el("span", "wiz-row__qty"));
+      line.appendChild(el("span", "wiz-row__pack"));
+      line.appendChild(el("span", "wiz-row__cost"));
+      return line;
+    }
+
+    function updateResultRow(line, r) {
+      var isSub = r.name.indexOf("\u2014") === 0;
+      line.className = "wiz-row" + (isSub ? " wiz-row_sub" : "");
+      line.querySelector(".wiz-row__name").textContent = r.name;
+      line.querySelector(".wiz-row__qty").textContent = fmt(r.qty) + " " + r.unit;
+      line.querySelector(".wiz-row__pack").textContent =
+        r.packs !== null ? r.packs + " \u00D7 " + r.packName : "";
+      line.querySelector(".wiz-row__cost").textContent = r.cost ? money(r.cost) : "\u2014";
+    }
+
+    function renderRows(rows) {
+      var rowsNode = NODES.rows;
+      if (!rowsNode) return;
+
+      var children = Array.prototype.slice.call(rowsNode.children);
+      if (children.some(function(node) { return !node.classList.contains("wiz-row"); })) {
+        clearChildren(rowsNode);
+        children = [];
+      }
+
+      rows.forEach(function(r, i) {
+        var line = children[i];
+        if (!line) {
+          line = createResultRow();
+          rowsNode.appendChild(line);
+          children[i] = line;
+        }
+        updateResultRow(line, r);
+      });
+
+      for (var i = children.length - 1; i >= rows.length; i--) {
+        if (children[i].parentNode === rowsNode) rowsNode.removeChild(children[i]);
+      }
+    }
+
+    var goodsRenderKey = null;
+
+    function goodsKey(rows) {
+      return rows.map(function(r) {
+        return [r.key, r.name, r.qty, r.unit].join("~");
+      }).join("|");
+    }
+
     function render() {
       var m = mode();
-      var result = CALC[m]();
-      var rows = result.rows.filter(Boolean);
       var scopeNode = NODES.scope;
       var rowsNode = NODES.rows;
       var totalNode = NODES.total;
 
-      if (rowsNode) {
-        while (rowsNode.firstChild) rowsNode.removeChild(rowsNode.firstChild);
+      if (!m || !CALC[m]) {
+        if (scopeNode) scopeNode.textContent = "";
+        if (rowsNode) {
+          clearChildren(rowsNode);
+          rowsNode.appendChild(el("div", "wiz__empty",
+            "Выберите вид работ выше — здесь появится расчёт."));
+        }
+        if (totalNode) totalNode.hidden = true;
+        if (NODES.print) NODES.print.disabled = true;
+        if (NODES.csv) NODES.csv.disabled = true;
+        renderGoods([]);
+        return;
       }
+
+      var result = CALC[m]();
+      var rows = result.rows.filter(Boolean);
 
       if (!rows.length) {
         if (scopeNode) scopeNode.textContent = "";
         if (rowsNode) {
+          clearChildren(rowsNode);
           rowsNode.appendChild(el("div", "wiz__empty",
             "Заполните размеры выше \u2014 здесь появится список материалов."));
         }
         if (totalNode) totalNode.hidden = true;
+        if (NODES.print) NODES.print.disabled = true;
+        if (NODES.csv) NODES.csv.disabled = true;
         renderGoods([]);
         return;
       }
@@ -427,25 +996,14 @@ $(function() {
       if (scopeNode) scopeNode.textContent = result.scope;
 
       var total = 0;
-
-      var frag = document.createDocumentFragment();
+      renderRows(rows);
 
       rows.forEach(function(r) {
-        var isSub = r.name.indexOf("\u2014") === 0;
-        var line = el("div", "wiz-row" + (isSub ? " wiz-row_sub" : ""));
-
-        line.appendChild(el("span", "wiz-row__name", r.name));
-        line.appendChild(el("span", "wiz-row__qty", fmt(r.qty) + " " + r.unit));
-        line.appendChild(el("span", "wiz-row__pack",
-          r.packs !== null ? r.packs + " \u00D7 " + r.packName : ""));
-        line.appendChild(el("span", "wiz-row__cost", r.cost ? money(r.cost) : "\u2014"));
-
-        frag.appendChild(line);
         total += r.cost;
       });
 
-      if (rowsNode) rowsNode.appendChild(frag);
-
+      if (NODES.print) NODES.print.disabled = false;
+      if (NODES.csv) NODES.csv.disabled = false;
       renderGoods(rows);
 
       if (totalNode) {
@@ -464,7 +1022,11 @@ $(function() {
       var box = NODES.goods;
       if (!box) return;
 
-      while (box.firstChild) box.removeChild(box.firstChild);
+      var key = goodsKey(rows);
+      if (key === goodsRenderKey) return;
+      goodsRenderKey = key;
+
+      clearChildren(box);
 
       var any = false;
       var gfrag = document.createDocumentFragment();
@@ -516,6 +1078,18 @@ $(function() {
     var modal = root.querySelector("[data-wiz-modal]");
     var modalFrame = root.querySelector("[data-wiz-modal-frame]");
     var modalTitle = root.querySelector("[data-wiz-modal-title]");
+    var modalClose = root.querySelector("[data-wiz-modal-x]");
+    var modalRestoreFocus = null;
+
+    if (modal) {
+      modal.setAttribute("role", "dialog");
+      modal.setAttribute("aria-modal", "true");
+      if (modalTitle) {
+        var modalTitleId = "wiz-modal-title-" + Math.random().toString(36).slice(2);
+        modalTitle.id = modalTitleId;
+        modal.setAttribute("aria-labelledby", modalTitleId);
+      }
+    }
 
     function videos(m) {
       var raw = (root.getAttribute("data-video-" + m) || "").trim();
@@ -523,7 +1097,7 @@ $(function() {
 
       return raw.split(/[\r\n]+/).map(function (line) {
         var p = line.split("|").map(function (x) { return x.trim(); });
-        var name, url;
+        var name, url, cover;
 
         if (p.length === 1) {
           name = "Смотреть видео";
@@ -531,18 +1105,33 @@ $(function() {
         } else {
           name = p[0];
           url = p[1];
+          cover = p[2] || "";
         }
 
-        return url ? { name: name, url: url } : null;
+        return url ? {
+          name: name,
+          url: url,
+          cover: cover || youtubeCover(url)
+        } : null;
       }).filter(Boolean).slice(0, 3);
+    }
+
+    function youtubeId(raw) {
+      var match = String(raw || "").match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{6,})/);
+      return match ? match[1] : "";
+    }
+
+    function youtubeCover(raw) {
+      var id = youtubeId(raw);
+      return id ? "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg" : "";
     }
 
     function embedUrl(raw) {
       if (!raw) return "";
       if (raw.indexOf("/embed/") !== -1 || raw.indexOf("video_ext") !== -1) return raw;
 
-      var yt = raw.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([\w-]{6,})/);
-      if (yt) return "https://www.youtube.com/embed/" + yt[1] + "?autoplay=1";
+      var yt = youtubeId(raw);
+      if (yt) return "https://www.youtube.com/embed/" + yt + "?autoplay=1";
 
       var rt = raw.match(/rutube\.ru\/video\/([\w-]+)/);
       if (rt) return "https://rutube.ru/play/embed/" + rt[1];
@@ -554,27 +1143,35 @@ $(function() {
     }
 
     function closeModal() {
-      while (modalFrame.firstChild) modalFrame.removeChild(modalFrame.firstChild);
-      modal.hidden = true;
+      clearChildren(modalFrame);
+      if (modal) modal.hidden = true;
       document.body.style.overflow = "";
+
+      if (modalRestoreFocus && typeof modalRestoreFocus.focus === "function") {
+        modalRestoreFocus.focus();
+      }
+      modalRestoreFocus = null;
     }
 
     function openModal(url, name) {
       var src = embedUrl(url);
-      if (!src) return;
+      if (!src || !modalFrame || !modal) return;
 
-      while (modalFrame.firstChild) modalFrame.removeChild(modalFrame.firstChild);
+      modalRestoreFocus = document.activeElement;
+      clearChildren(modalFrame);
 
       var frame = document.createElement("iframe");
       frame.setAttribute("src", src);
+      frame.setAttribute("title", name || "Видео");
       frame.setAttribute("allow", "autoplay; encrypted-media; fullscreen; picture-in-picture");
       frame.setAttribute("allowfullscreen", "");
       frame.setAttribute("frameborder", "0");
 
       modalFrame.appendChild(frame);
-      modalTitle.textContent = name || "";
+      if (modalTitle) modalTitle.textContent = name || "";
       modal.hidden = false;
       document.body.style.overflow = "hidden";
+      if (modalClose) modalClose.focus();
     }
 
     function playIcon(size) {
@@ -594,6 +1191,19 @@ $(function() {
       card.setAttribute("type", "button");
       card.setAttribute("data-video-url", v.url);
       card.setAttribute("data-video-name", v.name);
+
+      if (v.cover) {
+        var media = el("span", "wiz__tip-media");
+        var image = document.createElement("img");
+        image.setAttribute("src", v.cover);
+        image.setAttribute("alt", "");
+        image.setAttribute("loading", "lazy");
+        image.addEventListener("error", function() {
+          if (media.parentNode) media.parentNode.removeChild(media);
+        });
+        media.appendChild(image);
+        card.appendChild(media);
+      }
 
       var badge = el("span", "wiz__tip-badge");
       badge.appendChild(playIcon(10));
@@ -617,13 +1227,20 @@ $(function() {
       var pool = TIPS[m];
       var vids = videos(m);
 
-      if (!pool || !pool.length) return;
+      if (!pool || !pool.length) {
+        clearChildren(box);
+        if (!m) {
+          box.appendChild(el("div", "wiz__empty",
+            "Советы появятся после выбора вида работ."));
+        }
+        return;
+      }
 
       if (tipOffset[m] === undefined) {
         tipOffset[m] = Math.floor(Math.random() * pool.length);
       }
 
-      while (box.firstChild) box.removeChild(box.firstChild);
+      clearChildren(box);
 
       var frag = document.createDocumentFragment();
       var used = 0;
@@ -654,6 +1271,9 @@ $(function() {
 
     function showPanel() {
       var m = mode();
+      syncRequiredFields();
+
+      if (NODES.noSelection) NODES.noSelection.hidden = !!m;
 
       panels.forEach(function(p) {
         p.classList.toggle("is-active", p.getAttribute("data-calc-panel") === m);
@@ -669,8 +1289,109 @@ $(function() {
       return window.matchMedia("(max-width: 767px)").matches;
     }
 
+    var REQUIRED_FIELDS = {
+      plaster: ["length", "height"],
+      putty: ["length", "height"],
+      tile: ["length", "height"],
+      drywall: ["length", "height"],
+      floor: ["area"],
+      insulation: ["length", "height"],
+      masonry: ["length", "height"]
+    };
+
+    function syncRequiredFields() {
+      var activeMode = mode();
+      root.querySelectorAll("[data-calc-panel] [data-f]").forEach(function(el) {
+        var panel = el.closest("[data-calc-panel]");
+        var panelMode = panel && panel.getAttribute("data-calc-panel");
+        var name = el.getAttribute("data-f");
+        var required = (REQUIRED_FIELDS[panelMode] || []).indexOf(name) !== -1;
+
+        el.required = required && panelMode === activeMode;
+        el.setAttribute("aria-required", required && panelMode === activeMode ? "true" : "false");
+      });
+    }
+
+    function hasValue(el) {
+      if (!el || String(el.value).trim() === "") return false;
+      var value = parseNumber(el.value);
+      return !isNaN(value) && value > 0;
+    }
+
+    function requiredFieldsMissing() {
+      var missing = [];
+      var names = REQUIRED_FIELDS[mode()] || [];
+
+      names.forEach(function(name) {
+        var el = field(mode(), name);
+        if (!hasValue(el)) missing.push(el);
+      });
+
+      return missing;
+    }
+
+    function fieldLabel(el) {
+      var fieldNode = el && el.closest(".f");
+      var labelNode = fieldNode && fieldNode.querySelector(".f__label");
+      return labelNode ? labelNode.textContent.trim() : "обязательное поле";
+    }
+
+    function clearValidation() {
+      root.querySelectorAll(".f__ctrl.is-invalid").forEach(function(el) {
+        el.classList.remove("is-invalid");
+        el.removeAttribute("aria-invalid");
+      });
+
+      if (NODES.validation) {
+        NODES.validation.hidden = true;
+        NODES.validation.textContent = "";
+      }
+    }
+
+    function validateStepOne() {
+      if (mode()) return true;
+
+      if (NODES.validation) {
+        NODES.validation.textContent = "Выберите вид работ, чтобы продолжить.";
+        NODES.validation.hidden = false;
+      }
+
+      return false;
+    }
+
+    function validateStepTwo() {
+      clearValidation();
+      var missing = requiredFieldsMissing();
+
+      if (!missing.length) return true;
+
+      missing.forEach(function(el) {
+        if (!el) return;
+        el.classList.add("is-invalid");
+        el.setAttribute("aria-invalid", "true");
+      });
+
+      if (NODES.validation) {
+        NODES.validation.textContent = "Заполните обязательные поля: " +
+          missing.map(fieldLabel).join(", ") + ".";
+        NODES.validation.hidden = false;
+      }
+
+      if (missing[0]) {
+        missing[0].focus();
+        if (missing[0].scrollIntoView) {
+          missing[0].scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }
+
+      return false;
+    }
+
     function showStep(n) {
+      if (isMobile() && step === 1 && n > step && !validateStepOne()) return;
+      if (isMobile() && step === 2 && n > step && !validateStepTwo()) return;
       step = Math.min(Math.max(n, 1), TOTAL_STEPS);
+      root.classList.toggle("is-step-two", isMobile() && step === 2);
 
       steps.forEach(function(el) {
         el.classList.toggle("is-current", el.getAttribute("data-wiz-step") === String(step));
@@ -688,13 +1409,14 @@ $(function() {
       var next = NODES.next;
       if (prev) prev.disabled = step === 1;
       if (next) {
-        next.disabled = step === TOTAL_STEPS;
+        next.disabled = step === TOTAL_STEPS || (step === 1 && !mode());
         next.textContent = step === TOTAL_STEPS - 1 ? "Показать расчёт" : "Далее";
       }
     }
 
     root.addEventListener("change", function(e) {
       if (e.target.name === "wiz-mode") {
+        clearValidation();
         showPanel();
         renderTips();
         render();
@@ -702,7 +1424,8 @@ $(function() {
         return;
       }
       if (e.target.classList.contains("f__ctrl")) {
-        var v = parseFloat(String(e.target.value).replace(",", "."));
+        clearValidation();
+        var v = parseNumber(e.target.value);
         if (!isNaN(v)) {
           var c = clamp(e.target, v);
           if (c !== v) e.target.value = c;
@@ -716,9 +1439,10 @@ $(function() {
 
     root.addEventListener("input", function(e) {
       if (!e.target.classList.contains("f__ctrl")) return;
+      clearValidation();
 
-      var v = parseFloat(String(e.target.value).replace(",", "."));
-      var mx = parseFloat(e.target.getAttribute("max"));
+      var v = parseNumber(e.target.value);
+      var mx = parseNumber(e.target.getAttribute("max"));
 
       if (!isNaN(v) && !isNaN(mx) && v > mx) e.target.value = mx;
 
@@ -776,6 +1500,8 @@ $(function() {
 
     function estimateRows() {
       var m = mode();
+      if (!m || !CALC[m]) return { mode: "", scope: "", rows: [] };
+
       var result = CALC[m]();
       var out = [];
 
@@ -882,6 +1608,8 @@ $(function() {
     }
 
     function downloadExcel() {
+      if (!mode() || !CALC[mode()]) return;
+
       var doc = document.implementation.createHTMLDocument("Смета");
       buildEstimate(doc);
 
@@ -906,6 +1634,8 @@ $(function() {
 
     function estimateText() {
       var data = estimateRows();
+      if (!data.mode) return "Сначала выберите вид работ в калькуляторе.";
+
       var company = root.getAttribute("data-company") || "";
       var lines = [];
 
@@ -930,6 +1660,8 @@ $(function() {
 
 
     function printReport() {
+      if (!mode() || !CALC[mode()]) return;
+
       var frame = document.createElement("iframe");
       frame.setAttribute("aria-hidden", "true");
       frame.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0";
@@ -991,3 +1723,4 @@ $(function() {
     }
   }
 });
+})();

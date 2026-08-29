@@ -1,0 +1,62 @@
+{% assign title_first = widget_settings.hero_title_first | default: 'Материалы для стройки' %}
+{% assign title_second = widget_settings.hero_title_second | default: 'без' %}
+{% assign title_accent = widget_settings.hero_title_accent | default: 'лишних поисков' %}
+{% assign hero_text = widget_settings.hero_text | default: 'Есть готовая смета — пришлите её нам. Нет списка — рассчитайте материалы в калькуляторе ниже.' %}
+{% assign smeta_url = widget_settings.estimate_url | default: '/page/smeta' %}
+{% assign smeta_title = widget_settings.estimate_title | default: 'Пришлите смету — соберём заказ' %}
+{% assign smeta_text = widget_settings.estimate_text | default: 'Проверим позиции, подберём выгодные аналоги, посчитаем доставку и привезём всё на объект.' %}
+{% assign smeta_btn = widget_settings.estimate_btn | default: 'Скинуть смету' %}
+{% assign calculator_url = widget_settings.calculator_url | default: '/page/stroitelnyy-kalkulyator' %}
+{% assign calculator_title = widget_settings.calculator_title | default: 'Нужно посчитать материалы?' %}
+{% assign calculator_text = widget_settings.calculator_text | default: 'Укажите площадь и параметры объекта — получите ориентировочный список для закупки.' %}
+{% assign calculator_btn = widget_settings.calculator_btn | default: 'Открыть калькулятор' %}
+
+<div class="lama-showcase" data-lama-showcase>
+  <div class="lama-showcase__copy">
+    <h1 class="lama-showcase__title">
+      <span class="lama-showcase__title-line">{{ title_first | escape }}</span>
+      <span class="lama-showcase__title-line">
+        {{ title_second | escape }} <span class="lama-showcase__title-accent">{{ title_accent | escape }}</span>
+      </span>
+    </h1>
+
+    <p class="lama-showcase__text">{{ hero_text | escape }}</p>
+  </div>
+
+  <aside class="lama-showcase__aside" aria-label="Смета и калькулятор материалов">
+    <div class="lama-showcase__offer">
+      <div class="lama-showcase__offer-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false">
+          <path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          <path d="M14 3.5v4h4M9.5 12h5M9.5 15.5h3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <h2 class="lama-showcase__offer-title">{{ smeta_title | escape }}</h2>
+      <p class="lama-showcase__offer-text">{{ smeta_text | escape }}</p>
+
+      <a href="{{ smeta_url | escape }}" class="lama-showcase__offer-button">
+        <span>{{ smeta_btn | escape }}</span>
+        <span class="lama-showcase__offer-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="lama-showcase__calculator">
+      <div class="lama-showcase__calculator-head">
+        <span class="lama-showcase__calculator-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" focusable="false">
+            <rect x="5.5" y="3.5" width="13" height="17" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/>
+            <path d="M9 7.5h6M9 11.5h.01M12 11.5h.01M15 11.5h.01M9 15.5h.01M12 15.5h.01M15 15.5h.01" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h2 class="lama-showcase__calculator-title">{{ calculator_title | escape }}</h2>
+      </div>
+
+      <p class="lama-showcase__calculator-text">{{ calculator_text | escape }}</p>
+
+      <a href="{{ calculator_url | escape }}" class="lama-showcase__calculator-button">
+        {{ calculator_btn | escape }}
+      </a>
+    </div>
+  </aside>
+</div>

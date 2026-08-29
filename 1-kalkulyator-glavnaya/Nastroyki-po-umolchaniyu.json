@@ -1,0 +1,40 @@
+{
+  "hero_title_first": {
+    "ru": "Материалы для стройки"
+  },
+  "hero_title_second": {
+    "ru": "без"
+  },
+  "hero_title_accent": {
+    "ru": "лишних поисков"
+  },
+  "hero_text": {
+    "ru": "Есть готовая смета — пришлите её нам. Нет списка — рассчитайте материалы в калькуляторе ниже."
+  },
+  "estimate_title": {
+    "ru": "Пришлите смету — соберём заказ"
+  },
+  "estimate_text": {
+    "ru": "Проверим позиции, подберём выгодные аналоги, посчитаем доставку и привезём всё на объект."
+  },
+  "estimate_btn": {
+    "ru": "Скинуть смету"
+  },
+  "estimate_url": "/page/smeta",
+  "calculator_title": {
+    "ru": "Нужно посчитать материалы?"
+  },
+  "calculator_text": {
+    "ru": "Укажите площадь и параметры объекта — получите ориентировочный список для закупки."
+  },
+  "calculator_btn": {
+    "ru": "Открыть калькулятор"
+  },
+  "calculator_url": "/page/stroitelnyy-kalkulyator",
+  "bg": "#F4F5F3",
+  "layout-wide-bg": true,
+  "layout-pt": 0.5,
+  "layout-pb": 0.5,
+  "layout-wide-content": false,
+  "layout-edge": false
+}

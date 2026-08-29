@@ -1,0 +1,182 @@
+{
+  "{{ messages.content }}": [
+    {
+      "items": [
+        {
+          "class": "text",
+          "name": "hero_title_first",
+          "label": "Заголовок: первая строка",
+          "value": null,
+          "type": "text",
+          "general": true,
+          "general_position": 1
+        },
+        {
+          "class": "text",
+          "name": "hero_title_second",
+          "label": "Заголовок: начало второй строки",
+          "value": null,
+          "type": "text",
+          "general": true,
+          "general_position": 2
+        },
+        {
+          "class": "text",
+          "name": "hero_title_accent",
+          "label": "Заголовок: зелёное выделение",
+          "value": null,
+          "type": "text",
+          "general": true,
+          "general_position": 3
+        },
+        {
+          "class": "textarea",
+          "name": "hero_text",
+          "label": "Описание",
+          "value": null,
+          "type": "textarea"
+        },
+        {
+          "class": "text",
+          "name": "estimate_title",
+          "label": "Карточка сметы: заголовок",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "textarea",
+          "name": "estimate_text",
+          "label": "Карточка сметы: описание",
+          "value": null,
+          "type": "textarea"
+        },
+        {
+          "class": "text",
+          "name": "estimate_btn",
+          "label": "Карточка сметы: текст кнопки",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "text",
+          "name": "estimate_url",
+          "label": "Карточка сметы: ссылка кнопки",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "text",
+          "name": "calculator_title",
+          "label": "Карточка калькулятора: заголовок",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "textarea",
+          "name": "calculator_text",
+          "label": "Карточка калькулятора: описание",
+          "value": null,
+          "type": "textarea"
+        },
+        {
+          "class": "text",
+          "name": "calculator_btn",
+          "label": "Карточка калькулятора: текст кнопки",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "text",
+          "name": "calculator_url",
+          "label": "Карточка калькулятора: ссылка",
+          "value": null,
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "design": [
+    {
+      "type": "group",
+      "name": "{{ messages.stylization }}",
+      "items": [
+        {
+          "name": "bg",
+          "label": "{{ messages.widget_background_color }}",
+          "value": "",
+          "type": "color",
+          "clearable": true
+        },
+        {
+          "class": "checkbox",
+          "name": "layout-wide-bg",
+          "label": "{{ messages.wide_background }}",
+          "value": null,
+          "type": "checkbox"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "{{ messages.indentation }}",
+      "items": [
+        {
+          "class": "range",
+          "name": "layout-pt",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "label": "{{ messages.padding_top }} (rem)",
+          "type": "number",
+          "with_btns": true,
+          "help": "{{ messages.rem_helper }}",
+          "unit": "rem"
+        },
+        {
+          "class": "range",
+          "name": "layout-pb",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "label": "{{ messages.padding_bottom }} (rem)",
+          "type": "number",
+          "with_btns": true,
+          "help": "{{ messages.rem_helper }}",
+          "unit": "rem"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "{{ messages.content_settings }}",
+      "items": [
+        {
+          "class": "number",
+          "name": "layout-content-max-width",
+          "min": 980,
+          "max": 2000,
+          "label": "{{ messages.content_max_width }} (px)",
+          "type": "number",
+          "help": "{{ messages.px_helper }}",
+          "unit": "px",
+          "hide_mobile": true
+        },
+        {
+          "class": "checkbox",
+          "name": "layout-wide-content",
+          "label": "{{ messages.wide_content }}",
+          "value": null,
+          "type": "checkbox",
+          "hide_mobile": true
+        },
+        {
+          "class": "checkbox",
+          "name": "layout-edge",
+          "label": "{{ messages.remove_padding_at_edges }}",
+          "value": null,
+          "type": "checkbox"
+        }
+      ]
+    }
+  ]
+}

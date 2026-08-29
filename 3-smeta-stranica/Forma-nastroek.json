@@ -1,0 +1,64 @@
+{
+  "{{ messages.content }}": [
+    {
+      "items": [
+        {
+          "class": "textarea",
+          "name": "sm_lead",
+          "label": "Текст вверху",
+          "value": null,
+          "type": "textarea",
+          "general": true,
+          "general_position": 1
+        },
+        {
+          "class": "text",
+          "name": "sm_reply",
+          "label": "Обещание по времени ответа",
+          "value": null,
+          "type": "text",
+          "general": true,
+          "general_position": 2
+        },
+        {
+          "class": "text",
+          "name": "sm_telegram",
+          "label": "Telegram",
+          "value": null,
+          "type": "text",
+          "help": "Имя пользователя без собачки или полная ссылка. Пусто — кнопка не показывается."
+        },
+        {
+          "class": "text",
+          "name": "sm_max",
+          "label": "MAX",
+          "value": null,
+          "type": "text",
+          "help": "Ссылка на профиль вида max.ru/u/xxxxxx. Берётся в приложении: Настройки, иконка QR, Поделиться."
+        },
+        {
+          "class": "text",
+          "name": "sm_whatsapp",
+          "label": "WhatsApp",
+          "value": null,
+          "type": "text",
+          "help": "Номер в формате 79067677788."
+        },
+        {
+          "class": "text",
+          "name": "sm_phone",
+          "label": "Телефон для звонка",
+          "value": null,
+          "type": "text"
+        },
+        {
+          "class": "text",
+          "name": "sm_hours",
+          "label": "Время работы",
+          "value": null,
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
