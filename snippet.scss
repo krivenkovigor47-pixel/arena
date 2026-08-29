@@ -116,16 +116,18 @@
   }
 
   &__num {
-    flex: 0 0 auto;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background: var(--acc);
-    color: #fff;
-    font-size: 0.85rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 26px;
+    height: 26px;
+    flex: 0 0 auto;
+    border: 1px solid var(--acc);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--acc);
+    font-size: 0.85rem;
+    font-weight: 700;
   }
 
   &__step-title {
@@ -735,7 +737,9 @@
     min-width: 0;
 
     &__label {
-      min-height: 2.15rem;
+      height: 2.85rem;
+      min-height: 2.85rem;
+      line-height: 1.2;
       overflow-wrap: anywhere;
     }
 
