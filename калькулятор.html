@@ -392,11 +392,6 @@
 
       <div class="wiz__goods goods" data-wiz-goods></div>
 
-      <div class="wiz__total" data-wiz-total hidden>
-        <span class="wiz__total-label">Ориентировочно</span>
-        <span class="wiz__total-value" data-wiz-total-value></span>
-      </div>
-
       <div class="wiz__actions">
         {% if widget_settings.calc_catalog_url != blank %}
           <a href="{{ widget_settings.calc_catalog_url | escape }}" class="button button_size-l button_wide wiz__btn wiz__btn_catalog">
@@ -442,5 +437,4 @@
     <button type="button" class="button button_size-l wiz__nav-btn" data-wiz-next>Далее</button>
   </div>
 
-  <script type="application/json" data-wiz-prices>{{ widget_settings.calc_prices | strip_html }}</script>
 </div>

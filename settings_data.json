@@ -15,9 +15,6 @@
   "calc_note": {
     "ru": "Расчёт ориентировочный, по усреднённым нормам расхода. Точный расход указан на упаковке конкретного товара и зависит от основания и способа нанесения. Закладывайте запас."
   },
-  "calc_prices": {
-    "ru": "plaster_gypsum=\nputty=\nprimer=\npaint=\ntile_glue=\ngrout=\nscreed=\nself_level=\nblock_glue="
-  },
   "bg": null,
   "layout-wide-bg": true,
   "layout-pt": 2,

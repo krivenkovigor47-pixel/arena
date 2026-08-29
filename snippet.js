@@ -598,26 +598,12 @@ $(function() {
     var TOTAL_STEPS = 3;
     var step = 1;
 
-    var prices = {};
-    var priceNode = root.querySelector("[data-wiz-prices]");
-    if (priceNode) {
-      priceNode.textContent.trim().split("\n").forEach(function(line) {
-        var parts = line.split("=");
-        if (parts.length !== 2) return;
-        var key = parts[0].trim();
-        var val = parseNumber(parts[1]);
-        if (key && !isNaN(val)) prices[key] = val;
-      });
-    }
-
     var NODES = {
       rows: root.querySelector("[data-wiz-rows]"),
       scope: root.querySelector("[data-wiz-scope]"),
       goods: root.querySelector("[data-wiz-goods]"),
       tips: root.querySelector("[data-wiz-tips]"),
       noSelection: root.querySelector("[data-wiz-no-selection]"),
-      total: root.querySelector("[data-wiz-total]"),
-      totalValue: root.querySelector("[data-wiz-total-value]"),
       prev: root.querySelector("[data-wiz-prev]"),
       next: root.querySelector("[data-wiz-next]"),
       print: root.querySelector("[data-wiz-print]"),
@@ -677,18 +663,12 @@ $(function() {
       return n.toFixed(d).replace(".", ",").replace(/,0$/, "");
     }
 
-    function money(n) {
-      return Math.round(n).toLocaleString("ru-RU") + " \u20BD";
-    }
-
     function row(key, name, qty, unit, packSize, packName) {
       if (!qty || qty <= 0) return null;
       var packs = packSize ? Math.ceil(qty / packSize) : null;
-      var priceBase = packs !== null ? packs : qty;
       return {
         key: key, name: name, qty: qty, unit: unit,
-        packs: packs, packName: packName,
-        cost: prices[key] ? prices[key] * priceBase : 0
+        packs: packs, packName: packName
       };
     }
 
@@ -909,7 +889,6 @@ $(function() {
       line.appendChild(el("span", "wiz-row__name"));
       line.appendChild(el("span", "wiz-row__qty"));
       line.appendChild(el("span", "wiz-row__pack"));
-      line.appendChild(el("span", "wiz-row__cost"));
       return line;
     }
 
@@ -920,7 +899,6 @@ $(function() {
       line.querySelector(".wiz-row__qty").textContent = fmt(r.qty) + " " + r.unit;
       line.querySelector(".wiz-row__pack").textContent =
         r.packs !== null ? r.packs + " \u00D7 " + r.packName : "";
-      line.querySelector(".wiz-row__cost").textContent = r.cost ? money(r.cost) : "\u2014";
     }
 
     function renderRows(rows) {
@@ -960,7 +938,6 @@ $(function() {
       var m = mode();
       var scopeNode = NODES.scope;
       var rowsNode = NODES.rows;
-      var totalNode = NODES.total;
 
       if (!m || !CALC[m]) {
         if (scopeNode) scopeNode.textContent = "";
@@ -969,7 +946,6 @@ $(function() {
           rowsNode.appendChild(el("div", "wiz__empty",
             "Выберите вид работ выше — здесь появится расчёт."));
         }
-        if (totalNode) totalNode.hidden = true;
         if (NODES.print) NODES.print.disabled = true;
         if (NODES.csv) NODES.csv.disabled = true;
         renderGoods([]);
@@ -986,7 +962,6 @@ $(function() {
           rowsNode.appendChild(el("div", "wiz__empty",
             "Заполните размеры выше \u2014 здесь появится список материалов."));
         }
-        if (totalNode) totalNode.hidden = true;
         if (NODES.print) NODES.print.disabled = true;
         if (NODES.csv) NODES.csv.disabled = true;
         renderGoods([]);
@@ -995,27 +970,12 @@ $(function() {
 
       if (scopeNode) scopeNode.textContent = result.scope;
 
-      var total = 0;
       renderRows(rows);
-
-      rows.forEach(function(r) {
-        total += r.cost;
-      });
 
       if (NODES.print) NODES.print.disabled = false;
       if (NODES.csv) NODES.csv.disabled = false;
       renderGoods(rows);
 
-      if (totalNode) {
-        var valueNode = NODES.totalValue;
-        if (total > 0) {
-          if (valueNode) valueNode.textContent = money(total);
-          totalNode.hidden = false;
-        } else {
-          if (valueNode) valueNode.textContent = "";
-          totalNode.hidden = true;
-        }
-      }
     }
 
     function renderGoods(rows) {
@@ -1485,13 +1445,12 @@ $(function() {
       "@page{margin:0;size:landscape}"
     ].join("");
 
-    var COLS = [620, 120, 100, 110, 120, 110];
+    var COLS = [620, 120, 110, 120];
 
     var ST = {
       spacer: "padding:0;height:2pt;font-size:2pt;border:none",
       doc: "font-size:13pt;font-weight:bold;padding:4pt 0 2pt 0",
       job: "font-size:15pt;font-weight:bold;padding:10pt 0 2pt 0",
-      jobSum: "font-size:15pt;font-weight:bold;text-align:right;padding:10pt 0 2pt 0",
       sect: "font-size:12pt;font-weight:bold;padding:12pt 4pt 5pt 0;border-bottom:1pt solid #333",
       th: "font-size:12pt;font-weight:bold;padding:12pt 4pt 5pt 4pt;border-bottom:1pt solid #333",
       td: "font-size:12pt;padding:5pt 4pt;vertical-align:top",
@@ -1516,11 +1475,10 @@ $(function() {
             name: pick.n + " (нужно " + fmt(r.qty) + " " + r.unit + ")",
             art: pick.a,
             qty: Math.ceil(r.qty / pick.p),
-            unit: "шт",
-            cost: r.cost
+            unit: "шт"
           });
         } else {
-          out.push({ name: r.name, art: "", qty: r.qty, unit: r.unit, cost: r.cost });
+          out.push({ name: r.name, art: "", qty: r.qty, unit: r.unit });
         }
       });
 
@@ -1548,14 +1506,6 @@ $(function() {
       var company = root.getAttribute("data-company") || "";
       var d = new Date();
       var date = d.toLocaleDateString("ru-RU") + " " + d.toLocaleTimeString("ru-RU").slice(0, 5);
-      var total = 0;
-      var hasCost = false;
-
-      data.rows.forEach(function(r) {
-        total += r.cost;
-        if (r.cost) hasCost = true;
-      });
-
       var st = doc.createElement("style");
       st.textContent = REPORT_CSS;
       doc.head.appendChild(st);
@@ -1573,16 +1523,15 @@ $(function() {
         td(doc, spacer, "\u00A0", ST.spacer + ";width:" + px + "px", null, px);
       });
 
-      td(doc, tr(doc, table), "Смета от " + date + " — " + company, ST.doc, 6);
+      td(doc, tr(doc, table), "Смета от " + date + " — " + company, ST.doc, 4);
 
       var rj = tr(doc, table);
-      td(doc, rj, MODE_TITLES[data.mode] || "", ST.job, 5);
-      td(doc, rj, hasCost ? String(Math.round(total)) : "", ST.jobSum);
+      td(doc, rj, MODE_TITLES[data.mode] || "", ST.job, 4);
 
-      td(doc, tr(doc, table), data.scope, ST.td, 6);
+      td(doc, tr(doc, table), data.scope, ST.td, 4);
 
       var rh = tr(doc, table);
-      var heads = ["Основные товары", "Код товара", "Цена", "Количество", "Ед. измерения", "Сумма"];
+      var heads = ["Основные товары", "Код товара", "Количество", "Ед. измерения"];
       heads.forEach(function(h, i) {
         var base = i === 0 ? ST.sect : ST.th;
         td(doc, rh, h, base + ";width:" + COLS[i] + "px", null, COLS[i]);
@@ -1592,17 +1541,15 @@ $(function() {
         var row = tr(doc, table);
         td(doc, row, r.name, ST.td + ";width:" + COLS[0] + "px", null, COLS[0]);
         td(doc, row, r.art, ST.td);
-        td(doc, row, r.cost ? String(Math.round(r.cost / r.qty)) : "", ST.td);
         td(doc, row, fmt(r.qty), ST.td);
         td(doc, row, r.unit, ST.td);
-        td(doc, row, r.cost ? String(Math.round(r.cost)) : "", ST.td);
       });
 
       td(doc, tr(doc, table),
         "Смета ориентировочная, составлена по усреднённым нормам расхода. " +
         "Точный расход указан на упаковке конкретного товара и зависит от " +
         "основания, толщины слоя и способа нанесения. Не является " +
-        "коммерческим предложением.", ST.note, 6);
+        "коммерческим предложением.", ST.note, 4);
 
       doc.body.appendChild(table);
     }

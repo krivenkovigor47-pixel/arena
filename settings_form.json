@@ -51,14 +51,6 @@
           "type": "textarea"
         },
         {
-          "class": "textarea",
-          "name": "calc_prices",
-          "label": "Цены материалов",
-          "value": null,
-          "type": "textarea",
-          "help": "По строке на позицию: ключ=цена. Цена за упаковку, если в расчёте показаны упаковки. Пусто — стоимость не считается."
-        },
-        {
           "class": "text",
           "name": "msg_whatsapp",
           "label": "WhatsApp для сметы",
