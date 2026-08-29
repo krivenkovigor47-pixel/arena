@@ -146,7 +146,7 @@ $(function() {
 
     function mode() {
       var checked = root.querySelector('input[name="wiz-mode"]:checked');
-      return checked ? checked.value : "walls";
+      return checked ? checked.value : "";
     }
 
     function field(m, name) {
@@ -404,11 +404,22 @@ $(function() {
 
     function render() {
       var m = mode();
-      var result = CALC[m]();
-      var rows = result.rows.filter(Boolean);
       var scopeNode = NODES.scope;
       var rowsNode = NODES.rows;
       var totalNode = NODES.total;
+
+      if (!m || !CALC[m]) {
+        if (scopeNode) scopeNode.textContent = "";
+        if (rowsNode) {
+          while (rowsNode.firstChild) rowsNode.removeChild(rowsNode.firstChild);
+        }
+        if (totalNode) totalNode.hidden = true;
+        renderGoods([]);
+        return;
+      }
+
+      var result = CALC[m]();
+      var rows = result.rows.filter(Boolean);
 
       if (rowsNode) {
         while (rowsNode.firstChild) rowsNode.removeChild(rowsNode.firstChild);
@@ -618,7 +629,10 @@ $(function() {
       var pool = TIPS[m];
       var vids = videos(m);
 
-      if (!pool || !pool.length) return;
+      if (!pool || !pool.length) {
+        while (box.firstChild) box.removeChild(box.firstChild);
+        return;
+      }
 
       if (tipOffset[m] === undefined) {
         tipOffset[m] = Math.floor(Math.random() * pool.length);
@@ -716,6 +730,23 @@ $(function() {
       }
     }
 
+    function validateStepOne() {
+      if (mode()) {
+        if (NODES.validation) {
+          NODES.validation.hidden = true;
+          NODES.validation.textContent = "";
+        }
+        return true;
+      }
+
+      if (NODES.validation) {
+        NODES.validation.textContent = "Выберите вид работ, чтобы продолжить.";
+        NODES.validation.hidden = false;
+      }
+
+      return false;
+    }
+
     function validateStepTwo() {
       var missing = requiredFieldsMissing();
 
@@ -755,6 +786,7 @@ $(function() {
     }
 
     function showStep(n) {
+      if (isMobile() && step === 1 && n > step && !validateStepOne()) return;
       if (isMobile() && step === 2 && n > step && !validateStepTwo()) return;
       step = Math.min(Math.max(n, 1), TOTAL_STEPS);
       root.classList.toggle("is-step-two", isMobile() && step === 2);
@@ -775,7 +807,7 @@ $(function() {
       var next = NODES.next;
       if (prev) prev.disabled = step === 1;
       if (next) {
-        next.disabled = step === TOTAL_STEPS;
+        next.disabled = step === TOTAL_STEPS || (step === 1 && !mode());
         next.textContent = step === TOTAL_STEPS - 1 ? "Показать расчёт" : "Далее";
       }
     }

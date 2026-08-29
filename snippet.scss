@@ -115,21 +115,6 @@
     margin-bottom: 1.1rem;
   }
 
-  &__num {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    flex: 0 0 auto;
-    border: 1px solid var(--acc);
-    border-radius: 50%;
-    background: transparent;
-    color: var(--acc);
-    font-size: 0.85rem;
-    font-weight: 700;
-  }
-
   &__step-title {
     font-size: 1.05rem;
     font-weight: 600;
