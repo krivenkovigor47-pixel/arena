@@ -138,7 +138,8 @@ $(function() {
       total: root.querySelector("[data-wiz-total]"),
       totalValue: root.querySelector("[data-wiz-total-value]"),
       prev: root.querySelector("[data-wiz-prev]"),
-      next: root.querySelector("[data-wiz-next]")
+      next: root.querySelector("[data-wiz-next]"),
+      validation: root.querySelector("[data-wiz-validation]")
     };
 
     var fieldCache = {};
@@ -669,8 +670,94 @@ $(function() {
       return window.matchMedia("(max-width: 767px)").matches;
     }
 
+    var REQUIRED_FIELDS = {
+      plaster: ["length", "height"],
+      putty: ["length", "height"],
+      tile: ["length", "height"],
+      drywall: ["length", "height"],
+      floor: ["area"],
+      insulation: ["length", "height"],
+      masonry: ["length", "height"]
+    };
+
+    function hasValue(el) {
+      if (!el || String(el.value).trim() === "") return false;
+      var value = parseFloat(String(el.value).replace(",", "."));
+      return !isNaN(value) && value > 0;
+    }
+
+    function requiredFieldsMissing() {
+      var missing = [];
+      var names = REQUIRED_FIELDS[mode()] || [];
+
+      names.forEach(function(name) {
+        var el = field(mode(), name);
+        if (!hasValue(el)) missing.push(el);
+      });
+
+      return missing;
+    }
+
+    function fieldLabel(el) {
+      var fieldNode = el && el.closest(".f");
+      var labelNode = fieldNode && fieldNode.querySelector(".f__label");
+      return labelNode ? labelNode.textContent.trim() : "обязательное поле";
+    }
+
+    function clearValidation() {
+      root.querySelectorAll(".f__ctrl.is-invalid").forEach(function(el) {
+        el.classList.remove("is-invalid");
+        el.removeAttribute("aria-invalid");
+      });
+
+      if (NODES.validation) {
+        NODES.validation.hidden = true;
+        NODES.validation.textContent = "";
+      }
+    }
+
+    function validateStepTwo() {
+      var missing = requiredFieldsMissing();
+
+      root.querySelectorAll(".f__ctrl.is-invalid").forEach(function(el) {
+        el.classList.remove("is-invalid");
+        el.removeAttribute("aria-invalid");
+      });
+
+      if (!missing.length) {
+        if (NODES.validation) {
+          NODES.validation.hidden = true;
+          NODES.validation.textContent = "";
+        }
+        return true;
+      }
+
+      missing.forEach(function(el) {
+        if (!el) return;
+        el.classList.add("is-invalid");
+        el.setAttribute("aria-invalid", "true");
+      });
+
+      if (NODES.validation) {
+        NODES.validation.textContent = "Заполните обязательные поля: " +
+          missing.map(fieldLabel).join(", ") + ".";
+        NODES.validation.hidden = false;
+      }
+
+      if (missing[0]) {
+        missing[0].focus();
+        if (missing[0].scrollIntoView) {
+          missing[0].scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }
+
+      return false;
+    }
+
     function showStep(n) {
+      if (isMobile() && step === 2 && n > step && !validateStepTwo()) return;
       step = Math.min(Math.max(n, 1), TOTAL_STEPS);
+      root.classList.toggle("is-step-two", isMobile() && step === 2);
 
       steps.forEach(function(el) {
         el.classList.toggle("is-current", el.getAttribute("data-wiz-step") === String(step));
@@ -695,6 +782,7 @@ $(function() {
 
     root.addEventListener("change", function(e) {
       if (e.target.name === "wiz-mode") {
+        clearValidation();
         showPanel();
         renderTips();
         render();
@@ -702,6 +790,7 @@ $(function() {
         return;
       }
       if (e.target.classList.contains("f__ctrl")) {
+        clearValidation();
         var v = parseFloat(String(e.target.value).replace(",", "."));
         if (!isNaN(v)) {
           var c = clamp(e.target, v);
@@ -716,6 +805,7 @@ $(function() {
 
     root.addEventListener("input", function(e) {
       if (!e.target.classList.contains("f__ctrl")) return;
+      clearValidation();
 
       var v = parseFloat(String(e.target.value).replace(",", "."));
       var mx = parseFloat(e.target.getAttribute("max"));
