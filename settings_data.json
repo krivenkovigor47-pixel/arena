@@ -23,15 +23,5 @@
   "layout-edge": false,
   "wiz-bg": "#FFFFFF",
   "msg_whatsapp": "79067677788",
-  "msg_telegram": "",
-  "video_title": {
-    "ru": "Советы от специалистов"
-  },
-  "video_plaster": "",
-  "video_putty": "",
-  "video_tile": "",
-  "video_drywall": "",
-  "video_floor": "",
-  "video_insulation": "",
-  "video_masonry": ""
+  "msg_telegram": ""
 }

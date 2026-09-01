@@ -1,11 +1,4 @@
 <div class="wiz" data-wiz
-     data-video-plaster="{{ widget_settings.video_plaster | strip_html | escape }}"
-     data-video-putty="{{ widget_settings.video_putty | strip_html | escape }}"
-     data-video-tile="{{ widget_settings.video_tile | strip_html | escape }}"
-     data-video-drywall="{{ widget_settings.video_drywall | strip_html | escape }}"
-     data-video-floor="{{ widget_settings.video_floor | strip_html | escape }}"
-     data-video-insulation="{{ widget_settings.video_insulation | strip_html | escape }}"
-     data-video-masonry="{{ widget_settings.video_masonry | strip_html | escape }}"
      data-company="{{ widget_settings.calc_company | strip_html | escape }}"
      data-whatsapp="{{ widget_settings.msg_whatsapp | strip_html | escape }}"
      data-telegram="{{ widget_settings.msg_telegram | strip_html | escape }}">
@@ -105,22 +98,18 @@
             <label class="f">
               <span class="f__label">Суммарная длина стен, м</span>
               <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
-              <span class="f__hint">Сложите длины всех стен. Комната 5 × 3 м даёт 16 м</span>
             </label>
             <label class="f">
               <span class="f__label">Высота стен, м</span>
               <input type="number" class="f__ctrl" data-f="height" min="0" max="10" step="0.05" inputmode="decimal" required aria-required="true">
-              <span class="f__hint">От пола до потолка</span>
             </label>
             <label class="f">
               <span class="f__label">Проёмы, м&sup2;</span>
               <input type="number" class="f__ctrl" data-f="openings" min="0" max="500" step="0.1" inputmode="decimal">
-              <span class="f__hint">Площадь окон и дверей вместе</span>
             </label>
             <label class="f">
               <span class="f__label">Слой штукатурки, мм</span>
               <input type="number" class="f__ctrl" data-f="plasterMm" min="0" max="80" step="1" data-default="10" inputmode="numeric">
-              <span class="f__hint">Натяните нитку по диагонали и померьте просвет</span>
             </label>
             <label class="f">
               <span class="f__label">Бетоноконтакт</span>
@@ -128,7 +117,6 @@
                 <option value="yes">Нужен</option>
                 <option value="no">Не нужен</option>
               </select>
-              <span class="f__hint">Нужен на гладком бетоне, не нужен на пористой кладке</span>
             </label>
           </div>
         </div>
@@ -138,7 +126,6 @@
             <label class="f">
               <span class="f__label">Суммарная длина стен, м</span>
               <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
-              <span class="f__hint">Сложите длины всех стен</span>
             </label>
             <label class="f">
               <span class="f__label">Высота стен, м</span>
@@ -147,17 +134,14 @@
             <label class="f">
               <span class="f__label">Проёмы, м&sup2;</span>
               <input type="number" class="f__ctrl" data-f="openings" min="0" max="500" step="0.1" inputmode="decimal">
-              <span class="f__hint">Площадь окон и дверей вместе</span>
             </label>
             <label class="f">
               <span class="f__label">Слой шпаклёвки, мм</span>
               <input type="number" class="f__ctrl" data-f="puttyMm" min="0" max="10" step="0.5" data-default="2" inputmode="decimal">
-              <span class="f__hint">Обычно 1–2 мм под покраску</span>
             </label>
             <label class="f">
               <span class="f__label">Слоёв грунтовки</span>
               <input type="number" class="f__ctrl" data-f="primerLayers" min="0" max="5" step="1" data-default="2" inputmode="numeric">
-              <span class="f__hint">Перед шпаклёвкой и перед финишем</span>
             </label>
           </div>
         </div>
@@ -165,19 +149,16 @@
         <div class="wiz__panel" data-calc-panel="tile">
           <div class="wiz__grid">
             <label class="f">
-              <span class="f__label">Длина участка, м</span>
+              <span class="f__label">Первая сторона, м</span>
               <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
-              <span class="f__hint">Для пола — длина комнаты, для стены — её ширина</span>
             </label>
             <label class="f">
               <span class="f__label">Вторая сторона, м</span>
               <input type="number" class="f__ctrl" data-f="height" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
-              <span class="f__hint">Для пола — ширина комнаты, для стены — высота укладки</span>
             </label>
             <label class="f">
               <span class="f__label">Плитка, длинная сторона, мм</span>
               <input type="number" class="f__ctrl" data-f="tileA" data-default="600" min="1" max="3000" step="10" inputmode="numeric">
-              <span class="f__hint">Размер указан на упаковке плитки</span>
             </label>
             <label class="f">
               <span class="f__label">Плитка, короткая сторона, мм</span>
@@ -186,7 +167,6 @@
             <label class="f">
               <span class="f__label">Толщина плитки, мм</span>
               <input type="number" class="f__ctrl" data-f="tileH" data-default="9" min="1" max="40" step="1" inputmode="numeric">
-              <span class="f__hint">Нужна для расчёта затирки</span>
             </label>
             <label class="f">
               <span class="f__label">Зуб гребёнки, мм</span>
@@ -201,17 +181,14 @@
                 <option value="15">15 — плиты толщиной от 15 мм</option>
                 <option value="20">20 — беспустотная укладка на пол</option>
               </select>
-              <span class="f__hint">Слой клея должен быть не тоньше самой плиты</span>
             </label>
             <label class="f">
               <span class="f__label">Ширина шва, мм</span>
               <input type="number" class="f__ctrl" data-f="joint" data-default="2" min="0" max="20" step="0.5" inputmode="decimal">
-              <span class="f__hint">Зазор между плитками</span>
             </label>
             <label class="f">
               <span class="f__label">Слоёв грунтовки</span>
               <input type="number" class="f__ctrl" data-f="primerLayers" data-default="1" min="0" max="5" step="1" inputmode="numeric">
-              <span class="f__hint">0, если основание уже подготовлено</span>
             </label>
             <label class="f">
               <span class="f__label">Выравнивание</span>
@@ -220,7 +197,6 @@
                 <option value="svp">Система СВП</option>
                 <option value="none">Не нужно</option>
               </select>
-              <span class="f__hint">СВП — для крупного формата и керамогранита</span>
             </label>
             <label class="f">
               <span class="f__label">Схема укладки</span>
@@ -229,7 +205,6 @@
                 <option value="1.15">Со смещением — 15 %</option>
                 <option value="1.20">По диагонали — 20 %</option>
               </select>
-              <span class="f__hint">Запас на подрезку и бой</span>
             </label>
           </div>
         </div>
@@ -237,14 +212,12 @@
         <div class="wiz__panel" data-calc-panel="drywall">
           <div class="wiz__grid">
             <label class="f">
-              <span class="f__label">Длина конструкции, м</span>
+              <span class="f__label">Первая сторона, м</span>
               <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
-              <span class="f__hint">Для стены — её длина, для потолка — длина комнаты</span>
             </label>
             <label class="f">
               <span class="f__label">Вторая сторона, м</span>
               <input type="number" class="f__ctrl" data-f="height" min="0" max="500" step="0.05" inputmode="decimal" required aria-required="true">
-              <span class="f__hint">Для стены — высота, для потолка — ширина комнаты</span>
             </label>
             <label class="f">
               <span class="f__label">Конструкция</span>
@@ -252,7 +225,6 @@
                 <option value="wall">Стена или перегородка</option>
                 <option value="ceiling">Потолок</option>
               </select>
-              <span class="f__hint">У потолка добавляются подвесы</span>
             </label>
             <label class="f">
               <span class="f__label">Шаг стоек, мм</span>
@@ -260,7 +232,6 @@
                 <option value="600">600 — обычный</option>
                 <option value="400">400 — усиленный</option>
               </select>
-              <span class="f__hint">400 — под тяжёлую облицовку и навесное</span>
             </label>
             <label class="f">
               <span class="f__label">Слоёв обшивки</span>
@@ -268,7 +239,6 @@
                 <option value="1">1</option>
                 <option value="2">2</option>
               </select>
-              <span class="f__hint">2 слоя — для звукоизоляции и прочности</span>
             </label>
           </div>
         </div>
@@ -278,7 +248,6 @@
             <label class="f">
               <span class="f__label">Площадь пола, м&sup2;</span>
               <input type="number" class="f__ctrl" data-f="area" min="0" max="5000" step="0.1" inputmode="decimal" required aria-required="true">
-              <span class="f__hint">Длина умножить на ширину помещения</span>
             </label>
             <label class="f">
               <span class="f__label">Тип</span>
@@ -286,12 +255,10 @@
                 <option value="screed">Стяжка пескобетоном</option>
                 <option value="self">Наливной пол</option>
               </select>
-              <span class="f__hint">Наливной — для тонкого выравнивания под финиш</span>
             </label>
             <label class="f">
               <span class="f__label">Толщина слоя, мм</span>
               <input type="number" class="f__ctrl" data-f="mm" min="1" max="500" step="5" data-default="50" inputmode="numeric">
-              <span class="f__hint">Стяжка от 30 мм, наливной от 5 мм</span>
             </label>
             <label class="f">
               <span class="f__label">Слоёв грунтовки</span>
@@ -303,29 +270,24 @@
         <div class="wiz__panel" data-calc-panel="insulation">
           <div class="wiz__grid">
             <label class="f">
-              <span class="f__label">Длина, м</span>
+              <span class="f__label">Первая сторона, м</span>
               <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
-              <span class="f__hint">Длина стены, ската или пола</span>
             </label>
             <label class="f">
               <span class="f__label">Вторая сторона, м</span>
               <input type="number" class="f__ctrl" data-f="height" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
-              <span class="f__hint">Высота стены или ширина ската</span>
             </label>
             <label class="f">
               <span class="f__label">Толщина утеплителя, мм</span>
               <input type="number" class="f__ctrl" data-f="mm" data-default="100" min="1" max="500" step="10" inputmode="numeric">
-              <span class="f__hint">Стены 100–150, кровля 200</span>
             </label>
             <label class="f">
               <span class="f__label">В упаковке, м&sup2;</span>
               <input type="number" class="f__ctrl" data-f="packArea" data-default="2.88" min="0.01" max="100" step="0.01" inputmode="decimal">
-              <span class="f__hint">Написано на упаковке товара</span>
             </label>
             <label class="f">
               <span class="f__label">Запас, %</span>
               <input type="number" class="f__ctrl" data-f="reserve" data-default="5" min="0" max="50" step="1" inputmode="numeric">
-              <span class="f__hint">На подрезку по краям</span>
             </label>
           </div>
         </div>
@@ -333,14 +295,12 @@
         <div class="wiz__panel" data-calc-panel="masonry">
           <div class="wiz__grid">
             <label class="f">
-              <span class="f__label">Длина стены, м</span>
+              <span class="f__label">Длина одной стены, м</span>
               <input type="number" class="f__ctrl" data-f="length" min="0" max="500" step="0.1" inputmode="decimal" required aria-required="true">
-              <span class="f__hint">Если стены разной длины — сложите их и оставьте количество 1</span>
             </label>
             <label class="f">
               <span class="f__label">Количество таких стен, шт</span>
               <input type="number" class="f__ctrl" data-f="count" data-default="1" min="1" max="50" step="1" inputmode="numeric">
-              <span class="f__hint">Для одинаковых стен одной высоты</span>
             </label>
             <label class="f">
               <span class="f__label">Высота стены, м</span>
@@ -349,7 +309,6 @@
             <label class="f">
               <span class="f__label">Проёмы, м&sup2;</span>
               <input type="number" class="f__ctrl" data-f="openings" min="0" max="500" step="0.1" inputmode="decimal">
-              <span class="f__hint">Площадь окон и дверей вместе</span>
             </label>
             <label class="f">
               <span class="f__label">Материал</span>
@@ -369,12 +328,10 @@
             <label class="f" data-only="block">
               <span class="f__label">Толщина блока, мм</span>
               <input type="number" class="f__ctrl" data-f="blockMm" data-default="200" min="50" max="600" step="10" inputmode="numeric">
-              <span class="f__hint">Это и есть толщина стены</span>
             </label>
             <label class="f">
               <span class="f__label">Запас, %</span>
               <input type="number" class="f__ctrl" data-f="reserve" data-default="5" min="0" max="50" step="1" inputmode="numeric">
-              <span class="f__hint">На бой и подрезку</span>
             </label>
           </div>
         </div>
@@ -412,23 +369,6 @@
       <p class="wiz__note">{{ widget_settings.calc_note }}</p>
     </section>
 
-  </div>
-
-  <div class="wiz__tips">
-    <div class="wiz__tips-title">{{ widget_settings.video_title }}</div>
-    <div class="wiz__tips-grid" data-wiz-tips></div>
-  </div>
-
-  <div class="wiz__modal" data-wiz-modal hidden role="dialog" aria-modal="true" aria-label="Видео">
-    <div class="wiz__modal-in">
-      <button type="button" class="wiz__modal-x" data-wiz-modal-x aria-label="Закрыть">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <div class="wiz__modal-title" data-wiz-modal-title></div>
-      <div class="wiz__modal-frame" data-wiz-modal-frame></div>
-    </div>
   </div>
 
   <div class="wiz__nav" data-wiz-nav>

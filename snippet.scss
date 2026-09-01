@@ -249,164 +249,6 @@
     color: var(--color-text-half-shade);
   }
 
-  &__tips {
-    margin: 2rem var(--pad) 0;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--bg-major-shade);
-  }
-
-  &__tips-title {
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  &__tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 0.75rem;
-  }
-
-  &__tip {
-    background: #ffffff;
-    box-shadow: inset 0 0 0 1px var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.1rem;
-  }
-
-  &__tip-name {
-    font-weight: 600;
-    color: var(--acc-dark);
-    margin-bottom: 0.3rem;
-  }
-
-  &__tip-text {
-    font-size: 0.85rem;
-    line-height: 1.45;
-    color: var(--color-text-half-shade);
-  }
-
-  &__tip_video {
-    appearance: none;
-    border: 0;
-    font: inherit;
-    text-align: left;
-    cursor: pointer;
-    padding: 1rem 1.1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    transition: box-shadow .18s ease, transform .18s ease;
-
-    @media (hover: hover) {
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: inset 0 0 0 1px var(--color-text), 0 8px 20px -12px rgba(0, 0, 0, .3);
-      }
-
-      &:hover .wiz__tip-more {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  &__tip-media {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    margin-bottom: 0.85rem;
-    overflow: hidden;
-    border-radius: 8px;
-    background: var(--bg-major-shade);
-
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  &__tip-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--color-text);
-    background: color-mix(in srgb, var(--color-text) 8%, transparent);
-    border-radius: 999px;
-    padding: 0.25rem 0.6rem;
-    margin-bottom: 0.55rem;
-
-    svg {
-      display: block;
-    }
-  }
-
-  &__tip-more {
-    display: inline-block;
-    margin-top: 0.6rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--color-text);
-  }
-
-  &__modal {
-    position: fixed;
-    inset: 0;
-    z-index: 1200;
-    background: rgba(0, 0, 0, .78);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.25rem;
-  }
-
-  &__modal-in {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-  }
-
-  &__modal-x {
-    position: absolute;
-    top: -2.4rem;
-    right: 0;
-    appearance: none;
-    border: 0;
-    background: none;
-    color: #fff;
-    cursor: pointer;
-    padding: .3rem;
-  }
-
-  &__modal-title {
-    color: #fff;
-    font-weight: 600;
-    margin-bottom: .6rem;
-    padding-right: 2.5rem;
-  }
-
-  &__modal-frame {
-    position: relative;
-    padding-top: 56.25%;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #000;
-
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-  }
-
   &__nav {
     display: none;
     flex-wrap: wrap;
@@ -531,23 +373,6 @@
     }
   }
 
-  &__hint {
-    display: block;
-    font-size: 0.73rem;
-    color: var(--color-text-half-shade);
-    margin-top: 0.25rem;
-  }
-}
-
-.wiz__tip_video .wiz__tip-name {
-  display: block;
-  color: var(--color-text);
-  margin-bottom: 0.3rem;
-}
-
-.wiz__tip_video .wiz__tip-text {
-  display: block;
-  flex: 1 1 auto;
 }
 
 .goods {
@@ -704,14 +529,6 @@
       display: flex;
     }
 
-    &__tips {
-      display: none;
-    }
-
-    &.is-step-two .wiz__tips {
-      display: block;
-    }
-
     &__tiles {
       grid-template-columns: 1fr;
     }
@@ -726,8 +543,8 @@
     min-width: 0;
 
     &__label {
-      height: 2.85rem;
-      min-height: 2.85rem;
+      height: 2.4rem;
+      min-height: 2.4rem;
       line-height: 1.2;
       overflow-wrap: anywhere;
     }
@@ -736,8 +553,5 @@
       min-width: 0;
     }
 
-    &__hint {
-      overflow-wrap: anywhere;
-    }
   }
 }
