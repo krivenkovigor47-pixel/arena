@@ -639,6 +639,7 @@ $(function() {
       var next = NODES.next;
       if (prev) prev.disabled = step === 1;
       if (next) {
+        next.hidden = step === TOTAL_STEPS;
         next.disabled = step === TOTAL_STEPS || (step === 1 && !mode());
         next.textContent = step === TOTAL_STEPS - 1 ? "Показать расчёт" : "Далее";
       }
