@@ -1,0 +1,249 @@
+{% include "system_bnpl-modal" %}
+
+{% if widget_settings.page_header and widget_settings.page_header != '' %}
+  <h1 class="heading">{{ widget_settings.page_header | editable }}</h1>
+{% endif %}
+{% if cart.items.size > 0 %}
+  <form
+    action="{{ cart_items }}"
+    class="cart {% if cart.enable_coupon? %}with-coupon{% endif %}"
+    method="post"
+    data-cart-form
+    data-reload-on-coupon="false"
+    data-shop-title="{{ account.title }}"
+    data-shop-host="{{ account.main_host }}"
+    data-items-in-cart="{{- widget_messages.items_in_cart -}}"
+    data-share-items="{{- widget_messages.shared_cart -}}"
+    >
+    <input
+      type="text"
+      name="shared-cart-link"
+      class="shared-cart-link hidden" />
+    <div class="cart__area-items">
+      {% for item in cart.items %}
+        <div
+          class="cart-item {{ cart_class }}"
+          data-product-id="{{ item.product.id }}"
+          data-product-updated-at="{{ item.product.updated_at }}"
+          data-item-id="{{ item.id }}"
+          data-review-singular="{{ messages.review }}"
+          data-review-singular-gen="{{ widget_messages.review_singular_gen }}"
+          data-review-plural="{{ widget_messages.review_plural }}">
+          <div class="item-image">
+            <div class="img-ratio img-ratio_cover">
+              <div class="img-ratio__inner">
+                <img
+                  title="{{ item.title | escape }}"
+                  alt="{{ item.title | escape }}"
+                  src="{{ item.variant.first_image.large_url }}"
+                  class="item-image">
+              </div>
+            </div>
+          </div>
+          <div class="item-title-box">
+            <a href="{{item.product.url | add_param: 'variant_id', item.variant.id }}" class="item-title">
+              {{ item.product.title }}
+              {% if item.variant.title != "" %}<br><span class="variant-title">({{ item.variant.title }})</span>
+              {% endif %}
+            </a>
+            {% assign rel = item.product.related_products %}
+            {% if rel.size > 0 %}
+              <div class="item-rel" data-rel>
+                <span class="item-rel__label">К этому берут</span>
+                {% for r in rel %}
+                  <a href="{{ r.url }}" class="item-rel__link{% if forloop.index > 2 %} is-extra{% endif %}">
+                    <span class="item-rel__plus">+</span>{{ r.title | truncate: 34 }}<span class="item-rel__price">{{ r.price | money }}</span>
+                  </a>
+                {% endfor %}
+                {% if rel.size > 2 %}
+                  {% assign rest = rel.size | minus: 2 %}
+                  <button type="button" class="item-rel__more" data-rel-more data-rest="{{ rest }}">ещё {{ rest }}</button>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+          {% if account.reviews_enabled? and item.product.reviews_count > 0 %}
+            <div class="item-rating">
+              {% if item.product.rating %}
+                <div class="rating">
+                  {% for i in (1..5) %}
+                    <span class="icon {% if item.product.rating >= i %}icon-star active{% else %}icon-star-o{% endif %}"></span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+              <div class="rewiews">
+                <span class="review-count">{{ item.product.reviews_count }}</span>
+                <span class="review-text"></span></div>
+            </div>
+          {% endif %}
+          <div class="item-price">
+            <div>
+              <span class="price" data-cart-item-price>
+                {{ item.sale_price | money }}
+              </span>/{{ item.unit }}
+            </div>
+            {% if item.variant.old_price > item.sale_price %}
+              <span class="price-old">{{ item.variant.old_price | money }}</span>
+            {% endif %}
+          </div>
+          <div class="item-counter ">
+            <div class="counter" data-quantity>
+              <button
+                type="button"
+                data-quantity-change="-1"
+                class="counter-button button button_size-s is-count-down ">
+                <span class="icon icon-minus"></span>
+              </button>
+              <input
+                type="text"
+                value="{{ item.quantity }}"
+                name="cart[quantity][{{item.id}}]"
+                class="counter-input form-control form-control_size-s" />
+              <button
+                type="button"
+                data-quantity-change="1"
+                class="counter-button button button_size-s is-count-up ">
+                <span class="icon icon-plus"></span>
+              </button>
+            </div>
+          </div>
+          <div class="item-total" data-cart-item-total-price>
+            {{ item.total_price | money }}
+          </div>
+          <div class="item-delete">
+            <button
+              class="button js-item-delete icon icon-times"
+              type="submit"
+              data-item-delete="{{ item.id }}"></button>
+          </div>
+
+          {% if item.accessory_lines.size > 0 %}
+            {% assign total_accessories_price = 0 %}
+            {% assign accessories_prices = item.accessory_lines | map: 'accessory_value_price' %}
+            {% for price in accessories_prices %}
+              {% assign total_accessories_price = total_accessories_price | plus: price %}
+            {% endfor %}
+            <div class="item-accessories" data-item-accessories>
+              <div class="item-accessories__header">
+                <button class="item-accessories__expander">
+                  <span class="item-accessories__title">{{ messages.product_options }}</span>
+                  <span class="icon icon-sort-asc hidden"></span>
+                  <span class="icon icon-sort-desc"></span>
+                </button>
+                <span class="item-accessories__total-price">{{ total_accessories_price | money }}</span>
+              </div>
+              <div class="item-accessories__items is-hidden">
+                {% for accessory in item.accessory_lines %}
+                <div class="accessory-item">
+                    <span class="accessory-item__name" data-item-accessory-value-id="{{ accessory.accessory_value_id }}">{{ accessory.accessory_value_name }}</span>
+                    <span class="accessory-item__price">{{ accessory.accessory_value_price | money }}</span>
+                </div>
+              {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="cart__area-controls">
+      {% if cart.enable_coupon? %}
+        <div class="cart__area-coupon">
+          <div class="coupon-content">
+            <div class="coupon-input">
+              <input
+                type="text"
+                placeholder="{{ messages.coupon_placeholder }}"
+                class="form-control form-control_size-m form-control_wide"
+                name="cart[coupon]"
+                value="{{ cart.coupon }}" />
+              <button data-remove-coupon>
+                <span class="icon icon-times"></span>
+              </button>
+            </div>
+            <button
+              type="submit"
+              class="coupon-button button button-link_size-m"
+              data-coupon-submit>{{ widget_messages.filter_submit_title }}</button>
+          </div>
+          <div class="coupon-notice" data-cart-discounts-error></div>
+        </div>
+      {% endif %}
+      <div class="cart-controls">
+        <div class="total-products">
+          <div>{{ messages.products }} (<span data-cart-positions-count></span>)</div>
+          <div
+            data-cart-full-total-price></div>
+        </div>
+        <div class="discount" data-cart-discounts-ajax></div>
+        <div class="total">
+          <span class="total-description">{{ messages.total_caption }}:</span>
+          <span class="total-amount" data-cart-total-price></span>
+        </div>
+        <div class="submit-block">
+        <button
+          type="submit"
+          class="button button_size-l button_wide"
+          data-cart-submit>{{ messages.checkout }}</button>
+              </div>
+
+        <div class="cart-actions" data-cart-actions
+             data-shop="{{ account.title }}"
+             data-total-caption="{{ messages.total_caption }}">
+          <button type="button" class="cart-actions__btn" data-cart-print>
+            <span class="cart-actions__ico">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <path d="M7 9V3.8h10V9M7 17.5H5.2A1.2 1.2 0 0 1 4 16.3v-5.1A1.2 1.2 0 0 1 5.2 10h13.6a1.2 1.2 0 0 1 1.2 1.2v5.1a1.2 1.2 0 0 1-1.2 1.2H17M7 14.4h10v5.8H7z"
+                      fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="cart-actions__name">Распечатать</span>
+          </button>
+
+          <button type="button" class="cart-actions__btn" data-cart-xls>
+            <span class="cart-actions__ico">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <path d="M12 3.6v10.9m0 0-3.4-3.4M12 14.5l3.4-3.4M4.6 16.5v2.4a1.5 1.5 0 0 0 1.5 1.5h11.8a1.5 1.5 0 0 0 1.5-1.5v-2.4"
+                      fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="cart-actions__name">Скачать</span>
+          </button>
+
+          {% if editor_mode? or widget_settings.shared-cart-enable == true %}
+          <button type="button" class="cart-actions__btn social-button js-copy-url">
+            <span class="cart-actions__ico">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <path d="M12 3.6v10.6m0-10.6L8.6 7M12 3.6 15.4 7M4.6 14.4v4.5a1.5 1.5 0 0 0 1.5 1.5h11.8a1.5 1.5 0 0 0 1.5-1.5v-4.5"
+                      fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="cart-actions__name">{{ widget_messages.share }}</span>
+          </button>
+          {% endif %}
+        </div>
+        {% if sber_bnpl.payment_gateway_enabled? %}
+          {% if sber_bnpl.show_at_cart == true %}
+            {% include "system_bnpl-cart" %}
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <input
+      type="hidden"
+      name="_method"
+      value="put">
+    <input
+      type="hidden"
+      name="make_order"
+      value="">
+    <input
+      type="hidden"
+      name="lang"
+      value="{{ language.locale }}" />
+  </form>
+  {% assign cart_empty_class = 'hidden' %}
+{% endif %}
+<div class="text-center js-cart-empty {{ cart_empty_class }}">
+  {{ messages.cart_is_empty }}
+</div>
+
